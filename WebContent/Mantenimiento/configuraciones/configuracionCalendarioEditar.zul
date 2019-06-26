@@ -1,0 +1,75 @@
+<?page title="Asignaci�n de perfiles a usuarios" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window id="winConfiguracion" border="none" width="450px"
+		style="padding: 0 0 0 0;background:#122BC7;"
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.editar.ConfiguracionCalendarioEditar')">
+		<caption label="Ingrese datos" height="20px"
+			sclass="p-0 mb-0 text-white font-italic font-weight-bold" />
+		<vlayout>
+			<grid>
+				<columns>
+					<column align="right" hflex="min" />
+					<column align="left" hflex="1" />
+				</columns>
+				<rows>
+					<row>
+						<label value="Día Inicio : * "
+							sclass="font-weight-bold col-form-label" />
+						<combobox model="@load(vm.diaInicio)"
+							value="@bind(vm.configuracion.diasJuegoInicio)"
+							placeholder="Seleccione Día" width="170px"
+							selectedItem="@bind(vm.configuracion.diasJuegoFin)"
+							style="text-transform:uppercase">
+						</combobox>
+					</row>
+					<row>
+						<label value="Día Fin : * "
+							sclass="font-weight-bold col-form-label" />
+						<combobox model="@load(vm.diaFin)"
+							value="@bind(vm.configuracion.diasJuegoFin)"
+							placeholder="Seleccione Día" width="170px"
+							selectedItem="@bind(vm.configuracion.diasJuegoFin)"
+							style="text-transform:uppercase">
+						</combobox>
+					</row>				
+					<row>
+						<label value="Hora Inicio : *"
+							sclass="font-weight-bold col-form-label" />
+						<timebox id="horaInicio"
+							value="@bind(vm.configuracion.horaInicio)" format="short"
+							width="100px"/>
+					</row>
+					<row>
+						<label value="Hora Fin : *"
+							sclass="font-weight-bold col-form-label" />
+						<timebox id="horaFin" format="short"
+							value="@bind(vm.configuracion.horaFin)" width="100px" />
+					</row>
+					<row>
+						<label value="Tiempo Duración : *"
+							sclass="font-weight-bold col-form-label" />
+						<timebox id="tiempo" format="short"
+							value="@bind(vm.configuracion.tiempoDuracion)" width="100px" />
+					</row>
+					<row>
+						<label value="Partido por día : *"
+							sclass="font-weight-bold col-form-label" />
+						<intbox id="partido" 
+							value="@bind(vm.configuracion.partidoPorDia)" width="100px" />
+					</row>
+				</rows>
+			</grid>
+			<hlayout>
+				<button label="Grabar" iconSclass="z-icon-save"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('grabar')" />
+				<button label="Salir" iconSclass="z-icon-sign-out"
+					zclass="btn btn-outline-danger btn btn-sm"
+					onClick="@command('salir')" />
+			</hlayout>
+		</vlayout>
+	</window>
+</zk>

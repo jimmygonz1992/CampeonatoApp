@@ -1,0 +1,67 @@
+<?page title="Asignaci�n de perfiles a usuarios" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window id="winConfiguracionjugador" border="none" width="560px"
+		style="padding: 0 0 0 0;background:#122BC7;"
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.editar.ConfiguracionEditar')">
+		<caption label="Ingrese datos" height="20px"
+			sclass="p-0 mb-0 text-white font-italic font-weight-bold" />
+		<vlayout>
+			<grid>
+				<columns>
+					<column align="right" hflex="min" />
+					<column align="left" hflex="1" />
+				</columns>
+				<rows>
+					<row>
+						<label value="Campeonato : *"
+							sclass="font-weight-bold col-form-label" />
+						<combobox id="cboCampeonato"
+							model="@load(vm.campeonatos)" style="text-transform:uppercase"
+							placeholder="Seleccione Campeonato"
+							selectedItem="@bind(vm.configuracionjugador.campeonato)"
+							value="@load(vm.configuracionjugador.campeonato.nombreC)"
+							hflex="1">
+						</combobox>
+					</row>
+					<row>
+						<label value="Fecha Inicio : *"
+							sclass="font-weight-bold col-form-label" />
+						<datebox id="fechaInicio" format="short"
+							value="@bind(vm.configuracionjugador.fechaInicio)" hflex="1" />
+					</row>
+					<row>
+						<label value="Fecha Fin : *"
+							sclass="font-weight-bold col-form-label" />
+						<datebox id="fechaFin" format="short"
+							value="@bind(vm.configuracionjugador.fechaFin)" onClick=""
+							hflex="1" />
+					</row>
+					<row>
+						<label value="Hora Inicio : *"
+							sclass="font-weight-bold col-form-label" />
+						<timebox id="horaInicio"
+							value="@bind(vm.configuracionjugador.horaInicio)" format="short"
+							hflex="1" />
+					</row>
+					<row>
+						<label value="Hora Fin : *"
+							sclass="font-weight-bold col-form-label" />
+						<timebox id="horaFin" format="short"
+							value="@bind(vm.configuracionjugador.horaFin)" hflex="1" />
+					</row>
+				</rows>
+			</grid>
+			<hlayout>
+				<button label="Grabar" iconSclass="z-icon-save"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('grabar')" />
+				<button label="Salir" iconSclass="z-icon-sign-out"
+					zclass="btn btn-outline-danger btn btn-sm"
+					onClick="@command('salir')" />
+			</hlayout>
+		</vlayout>
+	</window>
+</zk>

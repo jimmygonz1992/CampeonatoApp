@@ -1,0 +1,30 @@
+<?page title="Lista Asignación de Categorías" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window apply="org.zkoss.bind.BindComposer" border="none"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.reportes.reporteEquipos')"
+		hflex="1" vflex="1" style="padding: 0 0 0 0;background:#FFFFFF;">		
+		<groupbox hflex="1">
+			<hlayout hflex="1">
+				<div>
+					<label value="Seleccione Campeonato : *"
+						sclass="font-weight-bold col-form-label" />
+					<combobox model="@load(vm.campeonatos)"
+						placeholder="Seleccione campeonato"
+						selectedItem="@bind(vm.campeonatoSeleccionado)"
+						value="@load(vm.campeonato.nombreC)" width="320px">
+					</combobox>
+				</div>
+				<space/>
+				<div>
+					<button label="Ver reporte"
+					    disabled="@bind(empty vm.campeonatoSeleccionado)"
+						iconSclass="z-icon-sign-print" onClick="@command('verReporte')"
+						zclass="btn btn-outline-danger btn btn-sm" />
+				</div>
+			</hlayout>
+		</groupbox>
+		
+	</window>
+</zk>

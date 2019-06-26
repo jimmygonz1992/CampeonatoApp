@@ -1,0 +1,4 @@
+<?page title="Auto Generated index.zul"?>
+<div apply="org.zkoss.bind.BindComposer"
+	 viewModel="@id('vm') @init('ec.edu.upse.gcf.control.Index')"> 
+</div> 

@@ -1,0 +1,97 @@
+<?page title="Login" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<html>
+		<head>
+			<meta charset="UTF-8" />
+			<title>login</title>
+			<style>
+				<!-- Estilo para el fonfo -->
+				body{ margin: 0; padding: 0; } 
+				body:before{ content: '';
+				position: fixed; width: 100vw; height: 100vh;
+				background-image: url("img/fondoba.jpg");
+				background-position: center center; 
+				background-repeat: no-repeat; 
+				background-attachment: fixed;
+				background-size: cover; }
+				
+				<!-- Estilo para el contorno del formulario -->
+				.contact-form { position: absolute; top: 50%; left: 50%;
+				transform: translate(-50%,-50%); width: 400px; height:
+				450px; padding: 80px 40px; box-sizing: border-box;
+				background: rgba(0,0,0,.3); }
+				
+				<!-- Estilo para el logo -->
+				.avatar { position:
+				absolute; width: 80px; height: 80px; border-radius: 50%;
+				overflow: hidden; top: calc(-80px/2); left: calc(50% -
+				40px); } 
+				
+				<!-- Estilo para las letras (head) -->
+				.contact-form h2 { margin: 0; padding: 0 0
+				20px; color: #fff; text-align: center; text-transform:
+				uppercase; } 
+				
+				<!-- Estilo para las letras (body) -->
+				.contact-form p { margin: 0; padding: 0;
+				font-weight: bold; color: #fff; } 
+				
+				<!-- Estilo para definir los espacios -->
+				.contact-form input {
+				width: 100%; margin-bottom: 5px; } 
+				.contact-form input[type="text"], 
+				.contact-form input[type="password"]{
+				border: none; border-bottom: 1px solid #fff;
+				background: transparent; outline: none; height: 40px;
+				color: #fff; font-size: 16px; } 
+				
+				<!-- Estilo para el boton -->
+				.contact-form
+				input[type="submit"] { height: 25px; color: #fff;
+				font-size: 15px; background: red; cursor: pointer;
+				border-radius: 25px; border: none; outline: none;
+				margin-top: 20%;}
+			</style>			
+		</head>
+		<body>
+			<h:form id="f" name="f" action="j_spring_security_check"
+				method="POST" xmlns:h="native">
+				<div class="contact-form">
+					<img src="img/logo.png" class="avatar" />
+					<h2>Inicio de Sesión</h2>
+					<form>
+						<p>Usuario</p>
+						<input type="text" id="u" name="username"
+							placeholder="Ingrese Usuario" />
+						<p>Password</p>
+						<input type="password" id="p" name="password"
+							placeholder="Ingrese Password" />
+
+						<input type="hidden"
+							name="${_csrf.parameterName}" value="${_csrf.token}" />
+
+						<div align="center">
+							<input type="submit" name="login" id="login" value="Ingresar al Sistema"/>
+						</div>
+						<div align="center">	
+							<p>¿Olvidaste tu contraseña?</p>
+							<a href="./Mantenimiento/recuperar/recuperar.zul" style="color:yellow">¡Clic Aquí!</a>							
+						</div>
+						<div align="center">
+							<html style="color:red"
+								if="${not empty param.login_error}">
+								
+								<![CDATA[ Ingreso fallido, intente
+								nuevamente.<br/><br/> Razon:
+								${SPRING_SECURITY_LAST_EXCEPTION.message}
+								]]>
+									
+							</html>
+						</div>
+						<div></div>
+					</form>
+				</div>
+			</h:form>
+		</body>
+	</html>
+</zk>

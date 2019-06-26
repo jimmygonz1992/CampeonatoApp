@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="CampeonatoApp" transaction-type="RESOURCE_LOCAL">
+		<class>ec.edu.upse.gcf.modelo.Cambio</class>
+		<class>ec.edu.upse.gcf.modelo.Campeonato</class>
+		<class>ec.edu.upse.gcf.modelo.Categoria</class>
+		<class>ec.edu.upse.gcf.modelo.Detallecalendario</class>
+		<class>ec.edu.upse.gcf.modelo.Detallecampeonato</class>
+		<class>ec.edu.upse.gcf.modelo.Detallepartido</class>
+		<class>ec.edu.upse.gcf.modelo.Equipo</class>
+		<class>ec.edu.upse.gcf.modelo.Equipojugador</class>
+		<class>ec.edu.upse.gcf.modelo.Institucion</class>
+		<class>ec.edu.upse.gcf.modelo.Jugador</class>
+		<class>ec.edu.upse.gcf.modelo.Lugarpartido</class>
+		<class>ec.edu.upse.gcf.modelo.Modalidad</class>
+		<class>ec.edu.upse.gcf.modelo.Opcion</class>
+		<class>ec.edu.upse.gcf.modelo.Opcionperfil</class>
+		<class>ec.edu.upse.gcf.modelo.Partido</class>
+		<class>ec.edu.upse.gcf.modelo.Perfil</class>
+		<class>ec.edu.upse.gcf.modelo.Tablaposicione</class>
+		<class>ec.edu.upse.gcf.modelo.Tarjeta</class>
+		<class>ec.edu.upse.gcf.modelo.Tarjetajugador</class>
+		<class>ec.edu.upse.gcf.modelo.Tipocancha</class>
+		<class>ec.edu.upse.gcf.modelo.Usuario</class>
+		<class>ec.edu.upse.gcf.modelo.Usuarioperfil</class>
+		<class>ec.edu.upse.gcf.modelo.Categoriajugador</class>
+		<class>ec.edu.upse.gcf.modelo.Configuracionjugador</class>
+		<class>ec.edu.upse.gcf.modelo.Configuracion</class>
+		<class>ec.edu.upse.gcf.modelo.Calendario</class>
+		<properties>
+			<property name="eclipselink.jdbc.batch-writing" value="JDBC"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sgcf_base"/>
+			<property name="javax.persistence.jdbc.user" value="root"/>
+			<property name="javax.persistence.jdbc.password" value="12345678"/>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+		</properties>
+	</persistence-unit>
+</persistence>

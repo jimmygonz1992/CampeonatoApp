@@ -1,0 +1,36 @@
+<?page title="Lista de Tipo de Campeonatos" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./winListaTipoCampeonatos" ?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window id="winListaTipoCampeonatos" hflex="1" vflex="1" border="none"
+	        apply="ec.edu.upse.gcf.listas.TipoCampeonatoLista" 
+	        style="padding: 0 0 0 0;background:#FFFFFF">
+		<vlayout vflex="1">
+			<div>
+				<button id="btnNuevo"    label="Nuevo"    iconSclass="z-icon-plus" zclass="btn btn-outline-primary btn-sm" />
+				<button id="btnEditar"   label="Editar"   iconSclass="z-icon-pencil" zclass="btn btn-outline-primary btn-sm" />
+				<button id="btnEliminar" label="Eliminar" iconSclass="z-icon-trash-o" zclass="btn btn-outline-primary btn-sm" />
+			</div>
+			<hlayout>
+				<textbox id="txtBuscar" hflex="1" style="text-transform:uppercase"/>
+				<button id="btnBuscar" label="Buscar!" iconSclass="z-icon-search" zclass="btn btn-outline-primary btn-sm"  />
+			</hlayout>
+			<hlayout vflex="1" hflex="1">
+				<listbox id="lstTipoCampeonatos"
+				         model="@{winListaTipoCampeonatos$composer.tipoCampeonatos}"
+				         selectedItem="@{winListaTipoCampeonatos$composer.tipoCampeonatoSeleccionado}" 
+						 hflex="1" vflex="1">
+					<listhead>
+						<listheader label="Descripcion" />				
+					</listhead>
+					<template name="model">
+						<listitem>
+							<listcell label="${each.descripcion}" />
+						</listitem>
+					</template>
+				</listbox>
+			</hlayout>
+		</vlayout>
+	</window>
+</zk>

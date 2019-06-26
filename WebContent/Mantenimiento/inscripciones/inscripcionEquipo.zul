@@ -1,0 +1,115 @@
+<?page title="Inscripción Equipos" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window id="winDetalleCampeonatoEquipoEditar" border="none"
+		style="padding: 0 0 0 0;background:#122BC7;"
+		apply="org.zkoss.bind.BindComposer" width="700px"
+		height="600px"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.editar.InscripcionEquipo')">
+		<caption label="Asigne Equipos a Categoría y Campeonato"
+			height="20px"
+			sclass="p-1 mb text-white font-italic font-weight-bold" />
+		<vlayout hflex="1" vflex="1">
+			<groupbox hflex="1">
+				<hlayout>
+					<div>
+						<label value="Campeonato : *"
+							sclass="font-weight-bold col-form-label" />
+						<combobox model="@load(vm.campeonatos)"
+								  placeholder="Seleccione campeonato"
+								  selectedItem="@bind(vm.campeonatoSeleccionado)"
+								  onSelect="@command('listarcategorias')"
+								  value="@load(vm.detallecampeonato.campeonato.nombreC)" >
+						</combobox>
+					</div>
+					<space />
+					<div>
+						<label value="Tipo Campeonato : "
+							sclass="font-weight-bold col-form-label" />
+						<label
+							value="@bind(vm.campeonatoSeleccionado.tipoCampeonato)"
+							sclass="col-form-label" />
+					</div>
+				</hlayout>
+			</groupbox>
+			<groupbox>
+				<hlayout>
+					<div>
+						<label value="Categoría : *"
+							sclass="font-weight-bold col-form-label" />
+						<combobox model="@load(vm.categorias)"
+							      placeholder="Seleccione" 
+							      onSelect="@command('listarequipos')"
+							      disabled="@bind(empty vm.campeonatoSeleccionado)"
+							      selectedItem="@bind(vm.categoriaSeleccionado)"
+							      value="@load(vm.detallecampeonato.categoria.nombre)"
+							      width="145px">
+						</combobox>
+					</div>
+					<space />
+					<div>
+						<label value="Tipo: "
+							sclass="font-weight-bold col-form-label" />
+						<label
+							value="@bind(vm.categoriaSeleccionado.tipo)"
+							sclass="col-form-label" />
+					</div> 
+					
+				</hlayout>
+			</groupbox>
+			<hbox hflex="1" vflex="1" align="center">
+				<listbox model="@load(vm.equiposDisponibles)"
+					autopaging="true" mold="paging"
+					selectedItem="@bind(vm.equipoSeleccionado)" hflex="1" vflex="1">
+					<listhead>
+						<listheader label="Equipos Disponibles"
+							style="background:#122BC7;" />
+					</listhead>
+					<template name="model">
+						<listitem>
+							<listcell label="@load(each.nombre)" />
+						</listitem>
+					</template>
+				</listbox>
+				<vbox>
+					<button iconSclass="z-icon-angle-right"
+						disabled="@bind(empty vm.equipoSeleccionado)"
+						sclass="btn btn-outline-success" onClick="@command('agregar')" />
+					<button iconSclass="z-icon-angle-double-right"
+						disabled="@bind(empty vm.equiposDisponibles)"
+						sclass="btn btn-outline-success"
+						onClick="@command('agregartodo')" />
+					<button iconSclass="z-icon-angle-left"
+						disabled="@bind(empty vm.quitarequipo)"
+						sclass="btn btn-outline-success" onClick="@command('quitar')" />
+					<button iconSclass="z-icon-angle-double-left"
+						disabled="@bind(empty vm.equiposInscritos)"
+						sclass="btn btn-outline-success" onClick="@command('quitartodo')" />
+				</vbox>
+				<listbox model="@load(vm.equiposInscritos)"
+					autopaging="true" mold="paging"
+					selectedItem="@bind(vm.quitarequipo)" hflex="1" vflex="1">
+					<listhead>
+						<listheader label="Equipos Inscritos"
+							style="background:#122BC7;" />
+					</listhead>
+					<template name="model">
+						<listitem>
+							<listcell label="@load(each.nombre)" />
+						</listitem>
+					</template>
+				</listbox>
+			</hbox>
+			<div>
+				<button label="Grabar" iconSclass="z-icon-save"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('grabar')" />
+				<button id="salir" label="Salir"
+					iconSclass="z-icon-sign-out"
+					zclass="btn btn-outline-danger btn btn-sm"
+					onClick="@command('salir')" />
+			</div>
+		</vlayout>
+	</window>
+</zk>

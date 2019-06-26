@@ -1,0 +1,187 @@
+<?page title="Partidos" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window id="winPartidoEditar" border="none" width="600px"
+		style="padding: 0 0 0 0;background:#0489B1;" position="center"
+		mode="embedded" apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.editar.PartidoEditar')">
+		<caption label="Ingrese datos" height="20px"
+			sclass="p-1 text-white font-italic font-weight-bold" />
+		<vlayout hflex="1" vflex="1">
+			<tabbox vflex="1" hflex="1">
+				<tabs>
+					<tab label="Datos" />
+					<tab label="Puntaje" />
+					<tab label="Otros" />
+				</tabs>
+				<tabpanels>
+					<tabpanel>
+						<vlayout vflex="1" hflex="1">
+							<grid sclass="form-group-row">
+								<columns>
+									<column hflex="min" align="right" />
+									<column hflex="1" align="left" />
+								</columns>
+								<rows>
+									<row>
+										<label value="Nombre Partido : "
+											sclass="font-weight-bold col-form-label" />
+										<textbox id="nombrePartido"
+											value="@bind(vm.partido.nombrepartido)" hflex="1"
+											constraint="no empty: Por favor ingrese el nombre del equipo"
+											maxlength="255" />
+									</row>
+									<row>
+										<label value="Calendario : "
+											sclass="font-weight-bold col-form-label" />
+										<combobox
+											model="@load(vm.calendarios)"
+											selectedItem="@bind(vm.partido.id_calendario)"
+											value="@load(vm.partido.id_calendario.fecha)"
+											placeholder="Seleccione una fecha" hflex="1">
+											<template name="model"
+												var="c">
+												<comboitem
+													label="@bind(c.fecha)" value="@load(each)" />
+											</template>
+										</combobox>
+									</row>
+									<row>
+										<label value="Estado : "
+											sclass="font-weight-bold col-form-label" />
+										<combobox
+											model="@load(vm.tipoestados)"
+											selectedItem="@bind(vm.partido.tipoestado)"
+											value="@load(vm.partido.tipoestado.descripcion)"
+											placeholder="Seleccione una estado" hflex="1">
+											<template name="model"
+												var="e">
+												<comboitem
+													label="@bind(e.descripcion)" value="@load(each)" />
+											</template>
+										</combobox>
+									</row>
+									<row>
+										<label value="Fecha : "
+											sclass="font-weight-bold col-form-label" />
+										<datebox id="fecha"
+											value="@bind(vm.partido.fecha)" hflex="1" />
+									</row>
+								</rows>
+							</grid>
+						</vlayout>
+					</tabpanel>
+					<tabpanel>
+						<vlayout>
+							<grid sclass="form-group-row">
+								<columns>
+									<column hflex="min" align="right" />
+									<column hflex="1" align="left" />
+								</columns>
+								<rows>
+									<row>
+										<label value="Equipo Ganador : "
+											sclass="font-weight-bold col-form-label" />
+										<combobox
+											model="@load(vm.equipos)"
+											selectedItem="@bind(vm.partido.equipoganador)"
+											value="@load(vm.partido.equipoganador.nombre)"
+											placeholder="Seleccione un equipo" hflex="1">
+											<template name="model"
+												var="e">
+												<comboitem
+													label="@bind(e.nombre)" value="@load(each)" />
+											</template>
+										</combobox>
+									</row>
+									<row>
+										<label value="Resultado : "
+											sclass="font-weight-bold col-form-label" />
+										<textbox id="resultadoG"
+											value="@bind(vm.partido.resultadoGanador)" hflex="1"
+											constraint="no empty: Por favor ingrese el resultado"
+											maxlength="255" />
+									</row>
+									<row>
+										<label
+											value="Equipo Perdedor : "
+											sclass="font-weight-bold col-form-label" />
+										<combobox
+											model="@load(vm.equipos)"
+											selectedItem="@bind(vm.partido.equiperdedor)"
+											value="@load(vm.partido.equiperdedor.nombre)"
+											placeholder="Seleccione un equipo" hflex="1">
+											<template name="model"
+												var="e">
+												<comboitem
+													label="@bind(e.nombre)" value="@load(each)" />
+											</template>
+										</combobox>
+									</row>
+									<row>
+										<label value="Resultado : "
+											sclass="font-weight-bold col-form-label" />
+										<textbox id="resultadoP"
+											value="@bind(vm.partido.resultadoPerdedor)" hflex="1"
+											constraint="no empty: Por favor ingrese el resultado"
+											maxlength="255" />
+									</row>
+								</rows>
+							</grid>
+						</vlayout>
+					</tabpanel>
+					<tabpanel>
+						<vlayout>
+							<grid sclass="form-group-row">
+								<columns>
+									<column hflex="min" align="right" />
+									<column hflex="1" align="left" />
+								</columns>
+								<rows>
+									<row>
+										<label value="Arbitro : "
+											sclass="font-weight-bold col-form-label" />
+										<textbox id="arbitro"
+											value="@bind(vm.partido.arbitro)" hflex="1"
+											constraint="no empty: Por favor ingrese el nombre del arbitro"
+											maxlength="255" />
+									</row>
+									<row>
+										<label
+											value="Tiempo adicional : "
+											sclass="font-weight-bold col-form-label" />
+										<textbox id="adicional"
+											value="@bind(vm.partido.tiempoadicional)" hflex="1"
+											constraint="no empty: Por favor ingrese el tiempo adicional"
+											maxlength="255" />
+									</row>
+									<row>
+										<label value="Observación : "
+											sclass="font-weight-bold col-form-label" />
+										<textbox id="observacion"
+											value="@bind(vm.partido.observacion)" hflex="1" height="70px"
+											constraint="no empty: Por favor ingrese la observación"
+											multiline="true"
+											maxlength="255" />
+									</row>
+								</rows>
+							</grid>
+						</vlayout>
+					</tabpanel>
+				</tabpanels>
+			</tabbox>
+			<!-- Botones -->
+			<div>
+				<button id="grabar" label="Grabar"
+					iconSclass="z-icon-save"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('grabar')" />
+				<button id="salir" label="Salir"
+					iconSclass="z-icon-sign-out"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('salir')" />
+			</div>
+		</vlayout>
+	</window>
+</zk>

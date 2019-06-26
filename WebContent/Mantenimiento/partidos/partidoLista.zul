@@ -1,0 +1,52 @@
+<?page title="Lista de Partidos Jugados" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window apply="org.zkoss.bind.BindComposer" border="none"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.listas.PartidoLista')"
+		hflex="1" vflex="1" style="padding: 0 0 0 0;background:#FFFFFF;">		
+		<vlayout vflex="1">
+			<div>
+				<button label="Nuevo" iconSclass="z-icon-plus"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('nuevo')" />
+				<button label="Editar" iconSclass="z-icon-pencil"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('editar')" />
+				<button label="Eliminar" iconSclass="z-icon-trash-o"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('eliminar')" />
+			</div>
+			<hlayout>
+				<textbox value="@bind(vm.textoBuscar)" hflex="1" />
+				<button label="Buscar!" iconSclass="z-icon-search"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('buscar')" />
+			</hlayout>
+			<hlayout vflex="1" hflex="1">
+				<listbox model="@load(vm.partidos)" autopaging="true"
+					mold="paging" selectedItem="@bind(vm.partidoSeleccionado)" hflex="1"
+					vflex="1">
+					<listhead>
+						<listheader label="Partido" style="background:#122BC7;" />
+						<listheader label="Ganador" style="background:#122BC7;" />
+						<listheader label="Resultado" style="background:#122BC7;" />
+						<listheader label="Perdedor" style="background:#122BC7;" />
+						<listheader label="Resultado" style="background:#122BC7;" />
+						<listheader label="Arbitro" style="background:#122BC7;" />
+					</listhead>
+					<template name="model">
+						<listitem>
+							<listcell label="@load(each.nombrepartido)" />
+							<listcell label="@load(each.equipoganador)" />
+							<listcell label="@load(each.resultadoGanador)" />
+							<listcell label="@load(each.equiperdedor)" />
+							<listcell label="@load(each.resultadoPerdedor)" />
+							<listcell label="@load(each.arbitro)" />
+						</listitem>
+					</template>
+				</listbox>
+			</hlayout>
+		</vlayout>
+	</window>
+</zk>

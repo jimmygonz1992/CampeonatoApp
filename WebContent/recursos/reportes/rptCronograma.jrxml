@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptCronograma" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="48dff39c-1f7c-4cb2-be4a-2cd4c23971ee">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="119" splitType="Stretch">
+			<staticText>
+				<reportElement x="209" y="9" width="329" height="26" uuid="13b1ffcd-30fd-46b1-9927-d5fff3432caf"/>
+				<textElement textAlignment="Center">
+					<font fontName="Serif" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Liga Deportiva Cantonal de Salinas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="287" y="35" width="195" height="13" uuid="8929b59e-3cfd-44c2-a62d-7d9fcc67b827"/>
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
+				<text><![CDATA[FUNDADA EL 7 DE AGOSTO DE 1947]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="225" y="48" width="296" height="14" uuid="721a2352-2185-4788-88ae-024ac90f27a2"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[AFILIADA A LA FEDERACIÓN DEPORTIVA DE SANTA ELENA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="216" y="62" width="311" height="24" uuid="ca8ad8d5-6c22-45e7-83f2-e653bb3c316f"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Avenida Carlos Espinoza Larrea - Estadio 'Dr. Camilo Gallegos'
+Teléfono: 2776324 - Email: ligadeportivacantonalsalinas@hotmail.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="260" y="86" width="230" height="14" uuid="a4f680b5-dfc3-4180-b429-b7f4de0dfcaf"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Salinas - Provincia de Santa Elena - Ecuador]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="600" y="98" width="86" height="17" uuid="505e79f8-18ff-4cb4-bf1c-b9577eb9593c"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="120" y="11" width="70" height="99" uuid="0b1f654b-ca85-4b86-befb-3df7b5a9d159"/>
+				<imageExpression><![CDATA["logo.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="548" y="27" width="152" height="54" uuid="c2916ee7-0260-4d0e-b7c2-92efccd0eca2"/>
+				<imageExpression><![CDATA["logo ministerio3.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

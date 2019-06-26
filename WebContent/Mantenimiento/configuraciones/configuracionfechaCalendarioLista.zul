@@ -1,0 +1,61 @@
+<?page title="Lista de Categorías" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window apply="org.zkoss.bind.BindComposer" border="none"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.listas.ConfiguracioncalendarioLista')"
+		hflex="1" vflex="1" style="padding: 0 0 0 0;background:#FFFFFF;">
+		<vlayout vflex="1">
+			<div>
+				<button label="Nuevo" iconSclass="z-icon-plus"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('nuevo')" />
+				<button id="btnEditar" label="Editar"
+					iconSclass="z-icon-pencil"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('editar')" />
+				<button id="btnEliminar" label="Eliminar"
+					iconSclass="z-icon-trash-o"
+					zclass="btn btn-outline-danger btn btn-sm"
+					onClick="@command('eliminar')" />
+			</div>
+			<hlayout>
+				<textbox value="@bind(vm.textoBuscar)" hflex="1"
+					style="text-transform:uppercase" />
+				<button label="Buscar!" iconSclass="z-icon-search"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('buscar')" />
+			</hlayout>
+			<hlayout vflex="1" hflex="1">
+				<listbox model="@load(vm.configuracion)" autopaging="true"
+					mold="paging" selectedItem="@bind(vm.configuracionseleccionada)"
+					hflex="1" vflex="1">
+					<listhead>
+						<listheader label="Día Inicio"
+							style="background:#122BC7;" />
+						<listheader label="Día Fin"
+							style="background:#122BC7;" align="center"/>
+						<listheader label="Hora Inicio"
+							style="background:#122BC7;" align="center"/>
+						<listheader label="Hora Fin"
+							style="background:#122BC7;" align="center" />
+						<listheader label="Tiempo"
+							style="background:#122BC7;" align="center"/>
+						<listheader label="PartidoPorDía"
+							style="background:#122BC7;" align="center"/>
+					</listhead>
+					<template name="model">
+						<listitem>
+							<listcell label="@load(each.diasJuegoInicio)" />
+							<listcell label="@load(each.diasJuegoFin)" />							
+							<listcell label="@load(each.horaInicio) @converter('formatedDate',format='hh:mm')"/>
+							<listcell label="@load(each.horaFin) @converter('formatedDate',format='hh:mm')" />
+							<listcell label="@load(each.tiempoDuracion) @converter('formatedDate',format='hh:mm')"  />
+							<listcell label="@load(each.partidoPorDia)" />							
+						</listitem>
+					</template>
+				</listbox>
+			</hlayout>
+		</vlayout>
+	</window>
+</zk>

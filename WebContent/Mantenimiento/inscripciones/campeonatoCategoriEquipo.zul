@@ -1,0 +1,47 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<div apply="org.zkoss.bind.BindComposer"
+	 viewModel="@id('vm') @init('ec.edu.upse.gcf.listas.CampeonatoEquipoCategoria')"
+	 hflex="1"
+	 vflex="1">	
+	
+	<tree id="treeCampeonato" 
+	      vflex="1"/>
+	      
+	<menupopup id="opcionCampeonato">
+		<menuitem iconSclass="z-icon-plus"	       
+				  label="Nuevo" />
+		<menuitem iconSclass="z-icon-pencil"	       
+				  label="Editar" />		  
+		<menuitem iconSclass="z-icon-trash-o"	       
+				  label="Eliminar" />
+		<menuitem iconSclass="z-icon-equip"	
+		          onClick="@command('categoriaEquipo')"       
+				  label="Asignar Categoria Equipo" />		  
+	</menupopup>
+	
+	<menupopup id="opcionCampeonatoEditar">
+		<menuitem iconSclass="z-icon-plus"	       
+				  label="Nuevo" />
+		<menuitem iconSclass="z-icon-pencil"	       
+				  label="Editar" />		  
+		<menuitem iconSclass="z-icon-trash-o"	       
+				  label="Eliminar" />				  
+	</menupopup>      
+	
+	<menupopup id="opcionCategoriaEditar">		
+		<menuitem iconSclass="z-icon-pencil"	       
+				  label="Editar" />		  
+		<menuitem iconSclass="z-icon-trash-o"	       
+				  label="Eliminar" />
+		<menuitem iconSclass="z-icon-plus"	       
+				  label="Agregar Equipo" />		  				  
+	</menupopup> 
+	
+	<menupopup id="opcionEquipoEditar">		
+		<menuitem iconSclass="z-icon-pencil"	       
+				  label="Editar" />		  
+		<menuitem iconSclass="z-icon-trash-o"	       
+				  label="Eliminar" /> 	  				  
+	</menupopup> 
+	      
+</div>

@@ -1,0 +1,63 @@
+<?page title="Lista de Campeonatos" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window hflex="1" vflex="1" border="none"
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.listas.CampeonatoLista')"
+		style="padding: 0 0 0 0;background:#FFFFFF;">
+		<vlayout vflex="1">
+			<div>
+				<button label="Nuevo" iconSclass="z-icon-plus"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('nuevo')" />
+				<button id="btnEditar" label="Editar"
+					iconSclass="z-icon-pencil"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('editar')" />
+				<button id="btnEliminar" label="Eliminar"
+					iconSclass="z-icon-trash-o"
+					zclass="btn btn-outline-danger btn btn-sm"
+					onClick="@command('eliminar')" />
+			</div>
+			<hlayout>
+				<textbox value="@bind(vm.textoBuscar)" hflex="1"
+					style="text-transform:uppercase" />
+				<button label="Buscar!" iconSclass="z-icon-search"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('buscar')" />
+			</hlayout>
+			<hlayout vflex="1" hflex="1">
+				<listbox model="@load(vm.campeonatos)" autopaging="true"
+					mold="paging" selectedItem="@bind(vm.campeonatoSeleccionado)"
+					vflex="1">
+					<listhead>
+						<listheader label="Nombre Campeonato"
+							width="380px" style="background:#122BC7;" />
+						<listheader label="Tipo"
+							width="120px" style="background:#122BC7;" />					
+						<listheader label="Fecha Inicio" align="center"
+							style="background:#122BC7;" />
+						<listheader label="Fecha Fin" align="center"
+							style="background:#122BC7;" />
+						<listheader label="Estado" align="center"
+							style="background:#122BC7;" />
+					</listhead>
+					<template name="model">
+						<listitem>
+							<listcell label="@load(each.nombreC)"
+								style="text-transform:uppercase" />
+							<listcell label="@load(each.tipoCampeonato)"
+								style="text-transform:uppercase" />							
+							<listcell
+								label="@load(each.fechaInicio) @converter('formatedDate',format='dd/MM/yyyy')" />
+							<listcell
+								label="@load(each.fechaFin) @converter('formatedDate',format='dd/MM/yyyy')" />
+							<listcell label="@load(each.estadocamp)" />
+						</listitem>
+					</template>
+				</listbox>
+			</hlayout>
+		</vlayout>
+	</window>
+</zk>

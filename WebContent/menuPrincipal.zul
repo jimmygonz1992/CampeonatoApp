@@ -1,0 +1,86 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<div apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.control.MenuPrincipalControl')"
+		height="100%">
+		<div sclass="container-fluid" height="100%">
+			<div sclass="row"
+				height="100px">
+				<image src="/img/bannerf.jpg" hflex="1px" vflex="1px" />
+			</div>
+			<div sclass="row" vflex="1">
+				<!-- DATOS Y OPCIONES -->
+				<div sclass="col-3">
+					<div sclass="row">
+						<div width="350px">
+							<!-- PANEL USUARIO -->
+							<div class="panel panel-default"
+								style="border:1px;">
+								<!-- ENCABEZADO -->
+								<div class="panel-heading"
+									align="center" style="background:#EBEAEA;">
+									<label
+										value="¡Bienvenido al Sistema!" style="font-size:12px;"
+										class="font-weight-bold" />
+								</div>
+								<!-- CONTENIDO -->
+								<div class="panel-body"
+									style="border:1px;">
+									<hlayout valign="middle">
+										<label
+											value="@load(vm.nombreUsuario)"
+											sclass=" p-2 mb font-weight-bold" style="font-size:12px;" />
+										<a href="/Mantenimiento/usuarios/cambioDatos.zul"
+											sclass=" p-2 mb font-weight-bold" style="font-size:12px;">
+											Cambiar Contraseña
+										</a>
+										<h:form id="f" name="f"
+											action="j_spring_security_logout" method="POST"
+											xmlns:h="native">
+											<html>
+												<input type="hidden"
+													name="${_csrf.parameterName}" value="${_csrf.token}" />
+												<input value="Salir"
+													style="color:blue;background:#FFFFFF;border:0px;"
+													type="submit" />
+											</html>
+										</h:form>
+									</hlayout>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div sclass="row" vflex="1">
+						<!-- OPCIONES -->
+						<div class="panel panel-default" vflex="1">
+							<!-- ENCABEZADO -->
+							<div class="panel-heading" align="center"
+								style="background:#EBEAEA;">
+								<label value="Opciones del Sistema"
+									style="font-size:12px;" class="font-weight-bold" />
+							</div>
+							<!-- CONTENIDO -->
+							<div class="panel-body" vflex="1">
+								<tree id="menu" vflex="1" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- AREA DE TRABAJO -->
+				<div sclass="col-9">
+					<div sclass="row" vflex="1">
+						<borderlayout>
+							<center>
+								<div hflex="1" vflex="1">
+									<include id="areaContenido" />
+								</div>
+							</center>
+						</borderlayout>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</zk>

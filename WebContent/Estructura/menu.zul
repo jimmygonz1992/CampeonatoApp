@@ -1,0 +1,18 @@
+<zk>
+	<style>.menu { background-color:#000040; color: white; }</style>
+	<grid id="grMenu" model="@load(vm.opciones)" hflex="1" vflex="1"
+		sclass="color: black; text-decoration: none;">
+
+		<columns>
+			<column width="70px" />
+			<column />
+		</columns>
+
+		<template name="model">
+			<row onClick="@command('cargaUrl', opcion=each)">
+				<label value="@load(each.titulo)" />
+			</row>
+		</template>
+	</grid>
+
+</zk>

@@ -1,0 +1,55 @@
+<?page title="Lista Asignación de Categorías" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window apply="org.zkoss.bind.BindComposer" border="none"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.listas.InscripcionequipoLista')"
+		hflex="1" vflex="1" style="padding: 0 0 0 0;background:#FFFFFF;">
+		<vlayout vflex="1">
+			<groupbox>
+				<div align="center">
+					<label
+						value="Listado de Inscripción de Equipos a un nuevo Campeonato "
+						style="color:red"
+						sclass="p-1 text-red font-italic font-weight-bold" />
+				</div>
+			</groupbox>
+			<hlayout>
+				<textbox value="@bind(vm.textoBuscar)" hflex="1"
+					placeholder="Busqueda por nombre de campeonatos"
+					style="text-transform:uppercase" />
+				<button label="Buscar!" iconSclass="z-icon-search"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('buscar')" />
+				<button label="Asignar" iconSclass="z-icon-plus"
+					zclass="btn btn-outline-danger btn btn-sm"
+					onClick="@command('nuevo')" />
+			</hlayout>
+			<hlayout vflex="1" hflex="1">
+				<listbox model="@load(vm.detallecampeonato)"
+					autopaging="true" mold="paging"
+					selectedItem="@bind(vm.detallecampeonatoSeleccionado)" hflex="1"
+					vflex="1">
+					<listhead>
+						<listheader label="Campeonato"
+							style="background:#122BC7;" />
+						<listheader label="Categoría"
+							style="background:#122BC7;" align="center" />
+						<listheader label="Equipo"
+							style="background:#122BC7;" width="500px" />
+					</listhead>
+					<template name="model">
+						<listitem>
+							<listcell
+								label="@load(each.campeonato.nombreC)" />
+							<listcell
+								label="@load(each.categoria.nombre)" />
+							<listcell
+								label="@load(each.equipo.nombre)" />
+						</listitem>
+					</template>
+				</listbox>
+			</hlayout>
+		</vlayout>
+	</window>
+</zk>

@@ -1,0 +1,69 @@
+<?page title="Cambio de clave" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window id="winUsuarioEditar" width="500px" vflex="1"
+		style="padding: 0 0 0 0;background:#122BC7;" mode="overlapped"
+		apply="org.zkoss.bind.BindComposer" border="none" position="center"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.editar.CambioClaveEditar')">
+		<caption label="Ingrese datos" height="20px"
+			sclass="p-1 mb text-white font-italic font-weight-bold" />
+		<div>
+			<vlayout>
+				<groupbox>
+					<div>
+						<hlayout>
+							<div align="left">
+								<image src="/img/advertencia.ico"
+									height="50px" />
+							</div>
+							<div align="center" hflex="1">
+								<label
+									value="Iniciaste sesión por primera vez, por favor cambia tu clave de acceso!!"
+									style="color:red" sclass=" p-0 mb font-italic font-weight-bold"
+									hflex="1" />
+							</div>
+						</hlayout>
+					</div>
+				</groupbox>
+				<groupbox>
+					<vlayout>
+						<grid>
+							<columns>
+								<column align="right" hflex="min" />
+								<column align="left" hflex="1" />
+							</columns>
+							<rows>
+								<row>
+									<label value="Clave nueva :"
+										sclass="font-weight-bold" />
+									<textbox id="claveNueva"
+										type="password" value="@load(vm.usuario.clave)" hflex="1" />
+								</row>
+								<row>
+									<label value="Confirmar clave : "
+										sclass="font-weight-bold" />
+									<textbox id="confirmaClave"
+										type="password" value="@load(vm.usuario.clave)" hflex="1"
+										onOK="@command('isValidarV')" />
+								</row>
+							</rows>
+						</grid>
+						<groupbox>
+							<div align="center">
+								<button id="btnGrabando" label="Grabar"
+									iconSclass="z-icon-save" disabled="validarClavesIguales"
+									zclass="btn btn-outline-primary btn btn-sm"
+									onClick="@command('grabando')" />
+								<button label="Salir"
+									iconSclass="z-icon-sign-out"
+									zclass="btn btn-outline-danger btn btn-sm"
+									onClick="@command('saliendo')" />
+							</div>
+						</groupbox>
+					</vlayout>
+				</groupbox>
+			</vlayout>
+		</div>
+	</window>
+</zk>

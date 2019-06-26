@@ -1,0 +1,63 @@
+<?page title="Lista de Jugadores" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.listas.JugadorLista')"
+		hflex="1" vflex="1" style="padding: 0 0 0 0;background:#FFFFFF;"
+		border="none">
+		<vlayout vflex="1">
+			<div>
+				<button label="Nuevo" iconSclass="z-icon-plus"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('nuevo')" />
+				<button id="btnEditar" label="Editar"
+					iconSclass="z-icon-pencil"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('editar')" />
+				<button id="btnEliminar" label="Eliminar"
+					iconSclass="z-icon-trash-o"
+					zclass="btn btn-outline-danger btn btn-sm"
+					onClick="@command('eliminar')" />
+			</div>
+			<hlayout>
+				<textbox value="@bind(vm.textoBuscar)" hflex="1"
+					style="text-transform:uppercase" />
+				<button label="Buscar!" iconSclass="z-icon-search"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('buscar')" />
+			</hlayout>
+			<hlayout vflex="1" hflex="1">
+				<listbox model="@load(vm.jugadores)" autopaging="true"
+					mold="paging" selectedItem="@bind(vm.jugadorSeleccionada)"
+					vflex="1" hflex="1">
+					<listhead>
+						<listheader label="Cédula" width="115px"
+							style="background:#122BC7;" />
+						<listheader label="Nombres y Apellidos"
+							style="background:#122BC7;" />
+						<listheader label="Edad" width="65px" align="center"
+							style="background:#122BC7;" />
+						<listheader label="Género" width="95px" align="center"
+							style="background:#122BC7;" />
+						<listheader label="NumCa" width="95px" align="center"
+							style="background:#122BC7;" />
+						<listheader label="Posicion Juego" align="center"
+ 							style="background:#122BC7;" />
+					</listhead>
+					<template name="model">
+						<listitem>
+							<listcell
+								label="@load(each.identificacion)" />
+							<listcell label="@load(each.nombres)" />
+							<listcell label="@load(each.edad)" />
+							<listcell label="@load(each.genero)" />
+							<listcell label="@load(each.numcamiseta)" />
+							<listcell label="@load(each.posicionjuego)" />
+						</listitem>
+					</template>
+				</listbox>
+			</hlayout>
+		</vlayout>
+	</window>
+</zk>

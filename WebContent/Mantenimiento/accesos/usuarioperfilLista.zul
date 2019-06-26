@@ -1,0 +1,44 @@
+<?page title="Opción Perfil" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.listas.UsuarioPerfilLista')"
+		hflex="1" vflex="1" style="padding: 0 0 0 0;background:#FFFFFF;"
+		border="none">
+		<vlayout vflex="1">
+			<div>
+				<button label="Nuevo" iconSclass="z-icon-plus" zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('nuevo')" />
+				<button id="btnEditar" label="Editar" iconSclass="z-icon-pencil" zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('editar')" />
+				<button id="btnEliminar" label="Eliminar"
+					iconSclass="z-icon-trash-o" zclass="btn btn-outline-danger btn btn-sm"
+					onClick="@command('eliminar')" />
+			</div>
+			<hlayout>
+				<textbox value="@bind(vm.textoBuscar)" hflex="1" style="text-transform:uppercase" />
+				<button label="Buscar!" iconSclass="z-icon-search" zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('buscar')" />
+			</hlayout>
+			<hlayout vflex="1" hflex="1">
+				<listbox model="@load(vm.usuarioperfiles)" autopaging="true"
+					mold="paging" selectedItem="@bind(vm.usuarioperfilSeleccionada)"
+					vflex="1">
+					<listhead>
+						<listheader label="Usuario" style="background:#122BC7;"/>
+						<listheader label="Perfil" style="background:#122BC7;" />
+						
+					</listhead>
+					<template name="model" var="u">
+						<listitem>
+							<listcell label="@load(u.usuario.usuario)" />
+							<listcell label="@load(u.perfil.nombre)" />							
+						</listitem>
+					</template>
+				</listbox>
+			</hlayout>
+		</vlayout>
+	</window>
+
+</zk>

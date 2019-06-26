@@ -1,0 +1,268 @@
+<?page title="Categorias" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window id="winInscripcionequipoEditar" border="none" width="960px" vflex="1"
+		apply="ec.edu.upse.gcf.editar.PruebaEditar"
+		style="padding: 0 0 0 0;background:#122BC7;" position="center"
+		mode="overlapped">
+		<caption label="Ingrese datos" height="20px"
+			sclass="p-1 text-white font-italic font-weight-bold" />
+		<vlayout vflex="1" hflex="1">
+			<groupbox>
+				<hlayout>
+					<div>
+						<label value="Estadio :"
+							sclass="font-weight-bold col-form-label" />
+						<label
+							value="@{winInscripcionequipoEditar$composer.detallecalendario.lugarpartido.nombreCancha}" />
+					</div>
+					<space />
+					<div>
+						<label value="Fecha :"
+							sclass="font-weight-bold col-form-label" />
+						<label id="fecha"
+							value="@{winInscripcionequipoEditar$composer.detallecalendario.fecha}"
+							sclass="col-form-label" />
+					</div>
+					<space />
+					<div>
+						<label value="Hora :"
+							sclass="font-weight-bold col-form-label" />
+						<label id="hora"
+							value="@{winInscripcionequipoEditar$composer.detallecalendario.hora}"
+							sclass="col-form-label" />
+					</div>
+					<space spacing="10px" />
+					<div>
+						<label value="Categoría :"
+							sclass="font-weight-bold col-form-label" />
+					</div>
+				</hlayout>
+			</groupbox>
+			<groupbox>
+				<hlayout>
+					<div>
+						<label value="Campeonato :"
+							sclass="font-weight-bold col-form-label" />
+						<label id="lblCampeonato"
+							value="@{winInscripcionequipoEditar$composer.calendario.campeonato.nombreC}"
+							sclass="col-form-label" />
+						<label value="Tipo :"
+							sclass="font-weight-bold col-form-label" />
+						<label
+							value="@{winInscripcionequipoEditar$composer.calendario.campeonato.tipoCampeonato}"
+							sclass="col-form-label" />
+					</div>
+					<space spacing="25px" />
+					<div>
+						<label id="lblEquipouno"
+							value="@{winInscripcionequipoEditar$composer.detallecalendario.equipo1.nombre}"
+							sclass="font-weight-bold col-form-label" style="color:red" />
+					</div>
+					<space />
+					<div>
+						<label value=" VS "
+							sclass="font-weight-bold col-form-label" style="color:blue" />
+					</div>
+					<space />
+					<div>
+						<label id="lblEquipodos"
+							value="@{winInscripcionequipoEditar$composer.detallecalendario.equipo2.nombre}"
+							sclass="font-weight-bold col-form-label" style="color:red" />
+					</div>
+				</hlayout>
+			</groupbox>
+			<tabbox vflex="1" hflex="1">
+				<tabs>
+					<tab label="Goles Jugador" />
+					<tab label="Cambios Jugador" />
+					<tab label="Sanciones Jugador" />
+				</tabs>
+				<tabpanels>
+					<tabpanel>
+						<vlayout vflex="1" hflex="1">
+							<hlayout>
+								<div>
+									<button id="agregarEquipouno"
+										label="Obtener Jugadores Equipo 1" iconSclass="z-icon-search"
+										zclass="btn btn-outline-primary btn btn-sm" />
+								</div>
+								<space spacing="198px" />
+								<div>
+									<button id="buscarEquipodos"
+										label="Obtener Jugadores Equipo 2" iconSclass="z-icon-search"
+										zclass="btn btn-outline-primary btn btn-sm" />
+								</div>
+							</hlayout>
+							<hbox align="center" vflex="1">
+								<listbox id="lblJuno" autopaging="true"
+									mold="paging" vflex="1" hflex="1"
+									model="@{winInscripcionequipoEditar$composer.jugadoresEuno}">
+									<listhead>
+										<listheader
+											label="Jugadores Participantes" hflex="min"
+											style="background:#122BC7;" />
+										<listheader label="GolPT"
+											style="background:#122BC7;" hflex="1" />
+										<listheader label="GolST"
+											style="background:#122BC7;" hflex="1" />
+									</listhead>
+									<template name="model">
+										<listitem>
+											<listcell>
+												<listcell
+													label="${each.nombres}" />
+											</listcell>
+											<listcell>
+												<textbox hflex="1"
+													height="25px" />
+											</listcell>
+											<listcell>
+												<textbox hflex="1"
+													height="25px" />
+											</listcell>
+										</listitem>
+									</template>
+								</listbox>
+								<listbox id="lblJdos" autopaging="true"
+									mold="paging" hflex="1" vflex="1"
+									model="@{winInscripcionequipoEditar$composer.jugadoresEdos}">
+									<listhead>
+										<listheader
+											label="Jugadores Participantes" hflex="min"
+											style="background:#122BC7;" />
+										<listheader label="GolPT"
+											style="background:#122BC7;" hflex="1" />
+										<listheader label="GolST"
+											style="background:#122BC7;" hflex="1" />
+									</listhead>
+									<template name="model">
+										<listitem>
+											<listcell
+												label="${each.nombres}" />
+											<listcell>
+												<textbox hflex="1"
+													height="25px" />
+											</listcell>
+											<listcell>
+												<textbox hflex="1"
+													height="25px" />
+											</listcell>
+										</listitem>
+									</template>
+								</listbox>
+							</hbox>
+						</vlayout>
+					</tabpanel>
+					<tabpanel>
+						<tabbox vflex="1" hflex="1">
+							<tabs>
+								<tab label="Equipo 1" />
+								<tab label="Equipo 2" />
+							</tabs>
+							<tabpanels>
+								<tabpanel hflex="1" vflex="1">
+									<vlayout hflex="1" vflex="1">
+										<div>
+											<button id="agregarEuno"
+												label="Agregar" iconSclass="z-icon-search"
+												zclass="btn btn-outline-primary btn btn-sm" />
+										</div>
+										<listbox vflex="1" hflex="1"
+											emptyMessage="No hay cambios"
+											model="@{winInscripcionequipoEditar$composer.cambioJugadorElocal}">
+											<listhead>
+												<listheader
+													align="center" hflex="min" style="background:#122BC7;" />
+												<listheader label="Sale"
+													hflex="1" style="background:#122BC7;" />
+												<listheader
+													label="Entra" style="background:#122BC7;" hflex="1" />
+												<listheader
+													label="Tiempo" style="background:#122BC7;" hflex="min" />
+											</listhead>
+											<template name="model"
+												var="c">
+												<listitem>
+													<listcell>
+														<a
+															iconSclass="z-icon-minus" zclass="badge badge-danger"
+															tooltiptext="Quitar"
+															onClick="@command('quitarEuno', cambioEuno = c)" />
+													</listcell>
+													<listcell>
+														<combobox />
+													</listcell>
+													<listcell>
+														<combobox />
+													</listcell>
+													<listcell>
+														<timebox
+															height="25px" />
+													</listcell>
+												</listitem>
+											</template>
+										</listbox>
+									</vlayout>
+								</tabpanel>
+								<tabpanel>
+									<vlayout hflex="1" vflex="1">
+										<div>
+											<button id="agregarEdos"
+												label="Agregar" iconSclass="z-icon-search"
+												zclass="btn btn-outline-primary btn btn-sm" />
+										</div>
+										<listbox vflex="1" hflex="1"
+											emptyMessage="No hay cambios"
+											model="@{winInscripcionequipoEditar$composer.cambioJugadorEVisitante}">
+											<listhead>
+												<listheader
+													align="center" hflex="min" style="background:#122BC7;" />
+												<listheader label="Sale"
+													hflex="1" style="background:#122BC7;" />
+												<listheader
+													label="Entra" style="background:#122BC7;" hflex="1" />
+												<listheader
+													label="Tiempo" style="background:#122BC7;" hflex="min" />
+											</listhead>
+											<template name="model"
+												var="c">
+												<listitem>
+													<listcell>
+														<a
+															iconSclass="z-icon-minus" zclass="badge badge-danger"
+															tooltiptext="Quitar"
+															onClick="@command('quitarEdos', cambioEdos = c)" />
+													</listcell>
+													<listcell>
+														<combobox />
+													</listcell>
+													<listcell>
+														<combobox />
+													</listcell>
+													<listcell>
+														<timebox
+															height="25px" />
+													</listcell>
+												</listitem>
+											</template>
+										</listbox>
+									</vlayout>
+								</tabpanel>
+							</tabpanels>
+						</tabbox>
+					</tabpanel>
+				</tabpanels>
+			</tabbox>			
+			<div>
+				<button id="grabar" label="Grabar"
+					iconSclass="z-icon-save"
+					zclass="btn btn-outline-primary btn btn-sm"/>
+				<button id="salir" label="Salir"
+					iconSclass="z-icon-sign-out"
+					zclass="btn btn-outline-danger btn btn-sm"/>
+			</div>
+		</vlayout>
+	</window>
+</zk>

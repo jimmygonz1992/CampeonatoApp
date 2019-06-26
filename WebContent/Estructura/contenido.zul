@@ -1,0 +1,5 @@
+<vbox vflex="1" hflex="1" align="center" 
+	  pack="center" spacing="70px">
+	<image src="/img/upse.png" />
+	<label value="Ejercicio App01" />
+</vbox>

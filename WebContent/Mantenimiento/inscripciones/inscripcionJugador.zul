@@ -1,0 +1,116 @@
+<?page title="Inscripcion Jugador" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window id="winEquipoJugadorEditar" border="none" width="800px"
+		height="600px" style="padding: 0 0 0 0;background:#122BC7;"
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.editar.EquipoJugadorEditar')">
+		<caption label="Asigne Jugador a Equipo y Campeonato"
+			height="20px"
+			sclass="p-1 mb text-white font-italic font-weight-bold" />
+		<vlayout hflex="1" vflex="1">
+			<groupbox>
+				<hlayout>
+					<div>
+						<label value="Campeonato : *"
+							sclass="font-weight-bold col-form-label" />
+						<combobox id="cboCampeonato"
+							model="@load(vm.campeonatos)" placeholder="Seleccione campeonato"
+							onSelect="@command('disableScreen')"
+							selectedItem="@bind(vm.campeonatoseleccionada)"
+							value="@load(vm.equipojugador.campeonato.nombreC)"
+							width="350px">
+						</combobox>
+					</div>
+					<space />
+					<div>
+						<label value="Categoria : "
+							sclass="font-weight-bold col-form-label" />
+						<label value="@bind(vm.categoria)"
+							sclass="col-form-label" />
+					</div>
+					<space />
+					<div>
+						<label value="Tipo : "
+							sclass="font-weight-bold col-form-label" />
+						<label
+							value="@bind(vm.campeonatoseleccionada.tipoCampeonato)"
+							sclass="col-form-label" />
+					</div>
+				</hlayout>
+			</groupbox>
+			<groupbox>
+				<hlayout>
+					<div>
+						<label value="Equipo : *"
+							sclass="font-weight-bold col-form-label" />
+						<combobox id="cboEquipo"
+							model="@load(vm.listaequipos)" placeholder="Seleccione Equipo"
+							onSelect="@command('listajugadores')"
+							selectedItem="@bind(vm.equiposeleccionada)"
+							value="@load(vm.equipojugador.equipo.nombre)" width="300px" />
+					</div>
+					<space />
+					<div>
+						<button id="btnGrabar" label="Grabar"
+							iconSclass="z-icon-save"
+							zclass="btn btn-outline-danger btn btn-sm"
+							onClick="@command('grabar')" />
+						<button id="salir" label="Salir"
+							iconSclass="z-icon-sign-out"
+							zclass="btn btn-outline-danger btn btn-sm"
+							onClick="@command('salir')" />
+					</div>
+				</hlayout>
+			</groupbox>
+			<hbox hflex="1" vflex="1" align="center">
+				<listbox id="lstJugadoresD"
+					model="@load(vm.jugadoresDisponibles)" autopaging="true"
+					mold="paging" selectedItem="@bind(vm.jugadorseleccionado)"
+					hflex="1" vflex="1">
+					<listhead>
+						<listheader label="Jugadores Disponible"
+							sclass="font-weight-bold col-form-label"
+							style="background:#122BC7;" />
+					</listhead>
+					<template name="model">
+						<listitem>
+							<listcell label="@load(each.nombres)" />
+						</listitem>
+					</template>
+				</listbox>
+				<vbox>
+					<button iconSclass="z-icon-angle-right"
+						disabled="@bind(empty vm.jugadorseleccionado)"
+						sclass="btn btn-outline-success" onClick="@command('agregar')" />
+					<button iconSclass="z-icon-angle-double-right"
+						disabled="@bind(empty vm.jugadoresDisponibles)"
+						sclass="btn btn-outline-success"
+						onClick="@command('agregartodo')" />
+					<button iconSclass="z-icon-angle-left"
+						disabled="@bind(empty vm.quitarjugador)"
+						sclass="btn btn-outline-success" onClick="@command('quitar')" />
+					<button iconSclass="z-icon-angle-double-left"
+						disabled="@bind(empty vm.jugadoresInscritos)"
+						sclass="btn btn-outline-success" onClick="@command('quitartodo')" />
+				</vbox>
+				<listbox id="lstJugadoresI"
+					model="@load(vm.jugadoresInscritos)" autopaging="true"
+					mold="paging" selectedItem="@bind(vm.quitarjugador)" hflex="1"
+					vflex="1">
+					<listhead>
+						<listheader label="Jugadores Inscritos"
+							sclass="font-weight-bold col-form-label"
+							style="background:#122BC7;" />
+					</listhead>
+					<template name="model">
+						<listitem>
+							<listcell label="@load(each.nombres)" />
+						</listitem>
+					</template>
+				</listbox>
+			</hbox>
+		</vlayout>
+	</window>
+</zk>

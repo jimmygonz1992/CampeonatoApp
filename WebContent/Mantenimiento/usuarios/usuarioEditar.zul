@@ -1,0 +1,115 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./winUsuarioEditar" ?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window id="winUsuarioEditar" width="550px" vflex="1"
+		style="padding: 0 0 0 0;background:#122BC7;" mode="overlapped"
+		apply="org.zkoss.bind.BindComposer" border="none" position="center"		
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.editar.UsuarioEditar')">
+		<caption label="Ingrese datos" height="20px"
+			sclass="p-1 mb text-white font-italic font-weight-bold" />
+		<vlayout>
+			<grid>
+				<columns>
+					<column align="right" hflex="min" />
+					<column align="left" hflex="1" />
+				</columns>
+				<rows>
+					<row>
+						<label value="Cédula : * " 
+						sclass="font-weight-bold col-form-label" />
+						<textbox id="cedula" xmlns:w="client"
+							value="@bind(vm.usuario.cedula)" hflex="1"
+							maxlength="10">
+							<attribute w:name="doKeyPress_">
+								function(evt){ if(this.getValue().length
+								> 0 ){ if (!this._shallIgnore(evt,
+								"0123456789")) this.$doKeyPress_(evt);
+								}else{ if (!this._shallIgnore(evt,
+								"0123456789")) this.$doKeyPress_(evt); }
+								}
+							</attribute>
+						</textbox>
+					</row>
+					<row>
+						<label value="Nombres : * " 
+						sclass="font-weight-bold col-form-label" />
+						<textbox id="nombres"
+							style="text-transform:uppercase"
+							value="@bind(vm.usuario.nombres)" hflex="1"
+							maxlength="255" />
+					</row>
+					<row>
+						<label value="Apellidos : * " 
+						sclass="font-weight-bold col-form-label" />
+						<textbox id="apellidos"
+							style="text-transform:uppercase"
+							value="@bind(vm.usuario.apellidos)" hflex="1"
+							maxlength="255" />
+					</row>
+					<row>
+						<label value="Dirección : " 
+						sclass="font-weight-bold col-form-label" />
+						<textbox id="direccion"
+							style="text-transform:uppercase"
+							value="@bind(vm.usuario.direccion)" hflex="1"
+							maxlength="255" />
+					</row>
+					<row>
+						<label value="Teléfono : " 
+						sclass="font-weight-bold col-form-label" />
+						<textbox id="telefono" xmlns:w="client"
+							value="@bind(vm.usuario.telefono)"
+							width="250px" maxlength="10">
+							<attribute w:name="doKeyPress_">
+								function(evt){ if(this.getValue().length
+								> 0 ){ if (!this._shallIgnore(evt,
+								"0123456789")) this.$doKeyPress_(evt);
+								}else{ if (!this._shallIgnore(evt,
+								"0123456789")) this.$doKeyPress_(evt); }
+								}
+							</attribute>
+						</textbox>
+					</row>
+					<row>
+						<label value="Correo : * "
+						sclass="font-weight-bold col-form-label" />
+						<textbox id="correo" xmlns:w="client"
+							style="text-transform:lowercase"
+							value="@bind(vm.usuario.correo)" hflex="1"
+							maxlength="255">
+
+						</textbox>
+					</row>
+					<row>
+						<label value="Usuario : * " 
+						sclass="font-weight-bold col-form-label" />
+						<textbox id="nombUsuario"
+							style="text-transform:lowerrcase"
+							value="@bind(vm.usuario.usuario)"
+							width="250px" maxlength="255" />
+					</row>
+					<row>
+						<label value="Clave : * " 
+						sclass="font-weight-bold col-form-label" />
+						<textbox id="clave" type="password"
+							value="@bind(vm.usuario.clave)" hflex="1"
+							maxlength="255" onOK="@command('isValidarV')"
+							/>
+					</row>
+				</rows>
+			</grid>
+			<!-- Los iconos listados con iconSclass son de: http://fontawesome.io/icons/ -->
+			<div>
+				<button id="btnGrabar" label="Grabar"
+					iconSclass="z-icon-save"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('grabar')" />
+				<button label="Salir"
+					iconSclass="z-icon-sign-out"
+					zclass="btn btn-outline-danger btn btn-sm"
+					onClick="@command('salir')" />
+			</div>
+		</vlayout>
+	</window>
+</zk>

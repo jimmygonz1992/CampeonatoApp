@@ -1,0 +1,64 @@
+<?page title="Lista Modalidades" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window id="winDetalleCEditar" apply="org.zkoss.bind.BindComposer"
+		border="none"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.listas.DetallecalendarioPLista')"
+		width="900px" height="500px"
+		style="padding: 0 0 0 0;background:#122BC7;">
+		<caption label="Seleccione el Equipo" height="20px"
+			sclass="p-1 text-white font-italic font-weight-bold" />
+		<vlayout vflex="1">
+			<hlayout>
+				<textbox value="@bind(vm.textoBuscar)" hflex="1"
+					style="text-transform:uppercase" />
+				<button label="Buscar" iconSclass="z-icon-search"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('buscar')" />
+				<button id="btnEditar" label="ObtenerDato"
+					iconSclass="z-icon-pencil"
+					zclass="btn btn-outline-success btn btn-sm"
+					onClick="@command('obtenerDato')" />
+				<button label="Salir" iconSclass="z-icon-sign-out"
+					zclass="btn btn-outline-danger btn btn-sm"
+					onClick="@command('salir')" />
+			</hlayout>
+			<hlayout vflex="1" hflex="1">
+				<listbox id="lstDetalleC"
+					model="@load(vm.detacalendario)" autopaging="true" mold="paging"
+					selectedItem="@bind(vm.detallecalendarioSeleccionada)" hflex="1"
+					vflex="1">
+					<listhead>
+						<listheader label="Campeonato"
+							style="background:#122BC7;" width="300px" />
+						<listheader label="Tipo"
+							style="background:#122BC7;" width="60px" />
+						<listheader label="EquipoLocal"
+							style="background:#122BC7;" />
+						<listheader label="EquipoVisitante"
+							style="background:#122BC7;" />
+						<listheader label="Fecha"
+							style="background:#122BC7;" width="100px" />
+						<listheader label="Hora"
+							style="background:#122BC7;" width="80px" />
+					</listhead>
+					<template name="model">
+						<listitem>
+							<listcell
+								label="@load(each.calendario.campeonato.nombreC)" />
+							<listcell
+								label="@load(each.calendario.campeonato.tipoCampeonato)" />
+							<listcell label="@load(each.equipo1)" />
+							<listcell label="@load(each.equipo2)" />
+							<listcell
+								label="@load(each.fecha) @converter('formatedDate',format='dd/MM/yyyy')" />
+							<listcell
+								label="@load(each.hora) @converter('formatedDate',format='hh:mm')" />
+						</listitem>
+					</template>
+				</listbox>
+			</hlayout>
+		</vlayout>
+	</window>
+</zk>

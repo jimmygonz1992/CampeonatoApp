@@ -1,0 +1,44 @@
+<?page title="Tipo de Canchas" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window id="winTipoCanchaEditar" border="none" vflex="1"
+		width="390px" apply="org.zkoss.bind.BindComposer"
+		style="padding: 0 0 0 0;background:#122BC7;" position="center"
+		mode="overlapped"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.editar.TipoCanchaEditar')">
+		<caption height="20px"
+			sclass="p-1 mb text-white font-italic font-weight-bold"
+			label="Ingrese datos" />
+		<vlayout>
+			<grid>
+				<columns>
+					<column align="right" hflex="min" />
+					<column align="left" hflex="1" />
+				</columns>
+				<rows>
+					<row>
+						<label value="Descripción : * "
+							sclass="font-weight-bold col-form-label" />
+						<textbox id="descripcion"
+							style="text-transform:uppercase"
+							value="@bind(vm.tipoCancha.descripcion)"
+							hflex="1" maxlength="50" />
+					</row>
+				</rows>
+			</grid>
+
+			<!-- Los iconos listados con iconSclass son de: http://fontawesome.io/icons/ -->
+			<div>
+				<button id="grabar" label="Grabar"
+					iconSclass="z-icon-save"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('grabar')" />
+				<button id="salir" label="Salir"
+					iconSclass="z-icon-sign-out"
+					zclass="btn btn-outline-danger btn btn-sm"
+					onClick="@command('salir')" />
+			</div>
+		</vlayout>
+	</window>
+</zk>

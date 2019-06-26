@@ -1,0 +1,71 @@
+<?page title="Campeonatos" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window id="winCampeonatoEditar" border="none" width="650px"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.editar.CampeonatoEditar')"
+		style="padding: 0 0 0 0;background:#122BC7;" position="center"
+		mode="embedded" apply="org.zkoss.bind.BindComposer">
+		<caption label="Ingrese datos" height="20px"
+			sclass="p-1 mb text-white font-italic font-weight-bold" />
+		<vlayout>
+			<grid>
+				<columns>
+					<column align="right" hflex="min" />
+					<column align="left" hflex="1" />
+				</columns>
+				<rows>
+					<row>
+						<label value="Nombre Campeonato : * "
+							sclass="font-weight-bold col-form-label" />
+						<textbox id="nombreC" hflex="1"
+							value="@bind(vm.campeonato.nombreC)" maxlength="255" />
+					</row>
+					<row>
+						<label value="Tipo Campeonato : * "
+							sclass="font-weight-bold col-form-label" />
+						<combobox model="@load(vm.tipoCampeonato)"
+							value="@bind(vm.campeonato.tipoCampeonato)"
+							placeholder="FEMENINO/MASCULINO" width="250px"
+							selectedItem="@bind(vm.campeonato.tipoCampeonato)"
+							style="text-transform:uppercase">
+						</combobox>
+					</row>
+					<row>
+						<label value="Fecha inicio : * "
+							sclass="font-weight-bold col-form-label" />
+						<datebox id="fechaInicio" width="250px" 
+							value="@bind(vm.campeonato.fechaInicio)" />
+					</row>
+					<row>
+						<label value="Fecha fin : "
+							sclass="font-weight-bold col-form-label" />
+						<datebox id="fechaFin" width="250px" 
+							value="@bind(vm.campeonato.fechaFin)" />
+					</row>
+					<row>
+						<label value="Estado : "
+							sclass="font-weight-bold col-form-label" />
+						<combobox model="@load(vm.estado)"
+							value="@bind(vm.campeonato.estadocamp)"
+							placeholder="DISPONIBLE/FINALIZADO" width="250px" 
+							style="text-transform:uppercase">							
+						</combobox>
+					</row>
+				</rows>
+			</grid>
+
+			<!-- Los iconos listados con iconSclass son de: http://fontawesome.io/icons/ -->
+			<hlayout>
+				<button id="grabar" label="Grabar"
+					iconSclass="z-icon-save"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('grabar')" />
+				<button id="salir" label="Salir"
+					iconSclass="z-icon-sign-out"
+					zclass="btn btn-outline-danger btn btn-sm"
+					onClick="@command('salir')" />
+			</hlayout>
+		</vlayout>
+	</window>
+</zk>

@@ -1,0 +1,9 @@
+<div hflex="1" vflex="1" sclass="footer">
+	<style>
+		.footer {	background-color:#012B07; color: white; padding: 15px
+		20px; }
+	</style>
+	<vbox hflex="1" vflex="1" align="center">
+		<label value="“Acércate a jugar sin ideas preconcebidas y probablemente te sorprenderás por tus resultados – Phil Jackson –" />
+     </vbox>
+</div>

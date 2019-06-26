@@ -1,0 +1,679 @@
+<?page title="Resultado Partido" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<div apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.listas.JugadorLista')"
+		hflex="1" vflex="1">
+		<groupbox vflex="1">
+			<vlayout spacing="15px" style="background:#F5F8FB;">
+				<!-- GROUP BOX 1 PARTIDO -->
+				<hlayout spacing="15px">
+					<groupbox id="partido" hflex="1"
+						style="background:#F5F8FB;" onOpen="cb.setChecked(event.open);">
+						<caption>
+							<checkbox id="cb" checked="true"
+								onCheck="partido.setOpen(event.checked)" />
+							<label value="Partido"
+								sclass="font-weight-bold col-form-label" />
+						</caption>
+						<hlayout valign="middle">
+							<label value="Fecha Calendario :" />
+							<combobox placeholder="Seleccione"
+								hflex="1">
+								<template name="model" var="e">
+									<comboitem label=""
+										value="@load(each)" />
+								</template>
+							</combobox>
+							<label value="Campeonato : " />
+							<combobox placeholder="Seleccione"
+								hflex="1">
+								<template name="model" var="e">
+									<comboitem label=""
+										value="@load(each)" />
+								</template>
+							</combobox>
+							<label value="Estado : " />
+							<combobox placeholder="Seleccione"
+								hflex="1">
+								<template name="model" var="e">
+									<comboitem label=""
+										value="@load(each)" />
+								</template>
+							</combobox>
+						</hlayout>
+						<space />
+						<listbox>
+							<listhead>
+								<listheader label="Equipo 1" />
+								<listheader label="Equipo 2" />
+							</listhead>
+							<template name="model">
+								<listitem>
+									<listcell
+										label="@load(each.identificacion)" />
+									<listcell
+										label="@load(each.nombres)" />
+								</listitem>
+							</template>
+						</listbox>
+					</groupbox>
+				</hlayout>
+				<!-- GROUP BOX 2 RESULTADO -->
+				<hlayout spacing="15px">
+					<groupbox id="resultado" hflex="1"
+						onOpen="cb1.setChecked(event.open);">
+						<caption>
+							<checkbox id="cb1" checked="true"
+								onCheck="resultado.setOpen(event.checked)" />
+							<label value="Resultado"
+								sclass="font-weight-bold col-form-label" />
+						</caption>
+						<div align="center">
+							<hlayout valign="middle">
+								<vlayout>
+									<div align="center">
+										<label value=" Equipo 1 " />
+									</div>
+									<textbox id="equipo1" width="200px" />
+								</vlayout>
+								<space spacing="70px" />
+								<vlayout>
+									<div align="center">
+										<label value=" Resultado " />
+									</div>
+									<hlayout>
+										<textbox id="equip1"
+											width="50px" />
+										<label value=" -- " />
+										<textbox id="equip2"
+											width="50px" />
+									</hlayout>
+								</vlayout>
+								<space spacing="70px" />
+								<vlayout>
+									<div align="center">
+										<label value=" Equipo 2 " />
+									</div>
+									<textbox id="equipo2" width="200px" />
+								</vlayout>
+							</hlayout>
+						</div>
+						<space spacing="20px" />
+						<div align="center">
+							<hlayout valign="middle">
+								<vlayout>
+									<div align="center">
+										<label value=" Puntos " />
+									</div>
+									<hlayout>
+										<textbox id="equipopunto1"
+											width="50px" />
+										<label value=" -- " />
+										<textbox id="equipopunto2"
+											width="50px" />
+									</hlayout>
+								</vlayout>
+							</hlayout>
+						</div>
+						<space spacing="20px" />
+						<div>
+							<hlayout valign="middle">
+								<label value="Arbitro : " />
+								<textbox id="arbitro" hflex="1" />
+								<label value="Tiempo adicional : " />
+								<textbox id="adicional" hflex="1" />
+							</hlayout>
+						</div>
+					</groupbox>
+				</hlayout>
+				<!-- GROUP BOX 3 DETALLE PARTIDO -->
+				<hlayout spacing="15px">
+					<groupbox id="detallePartido" hflex="1"
+						onOpen="cb2.setChecked(event.open);">
+						<caption>
+							<checkbox id="cb2" checked="true"
+								onCheck="detallePartido.setOpen(event.checked)" />
+							<label value="Detalle Partido"
+								sclass="font-weight-bold col-form-label" />
+						</caption>
+						<hlayout>
+							<vlayout hflex="1" vflex="1">
+								<tabbox hflex="1" vflex="1">
+									<tabs>
+										<tab label="Cambio Jugador" />
+										<tab label="Gol Jugador" />
+										<tab label="Tarjetas" />
+									</tabs>
+									<tabpanels>
+										<!-- CAMBIO JUGADOR -->
+										<tabpanel hflex="1"
+											vflex="true">
+											<hlayout>
+												<div hflex="1">
+													<space
+														spacing="33px" />
+													<label
+														value="Equipo 1 : " />
+													<space
+														spacing="1px" />
+													<combobox
+														hflex="1">
+													</combobox>
+												</div>
+												<div hflex="1">
+													<space
+														spacing="33px" />
+													<label
+														value="Equipo 2 : " />
+													<space
+														spacing="1px" />
+													<combobox
+														hflex="1">
+													</combobox>
+												</div>
+											</hlayout>
+											<hlayout>
+												<div hflex="1">
+													<label
+														value="Jugador Entra : " />
+													<space
+														spacing="1px" />
+													<combobox
+														hflex="1">
+													</combobox>
+												</div>
+												<div hflex="1">
+													<label
+														value="Jugador Entra : " />
+													<space
+														spacing="1px" />
+													<combobox
+														hflex="1">
+													</combobox>
+												</div>
+											</hlayout>
+											<hlayout>
+												<div hflex="1">
+													<space
+														spacing="1px" />
+													<label
+														value="Jugador Sale : " />
+													<space
+														spacing="1px" />
+													<combobox
+														hflex="1">
+													</combobox>
+												</div>
+												<div hflex="1">
+													<label
+														value="Jugador Sale : " />
+													<space
+														spacing="7px" />
+													<combobox
+														hflex="1">
+													</combobox>
+												</div>
+											</hlayout>
+											<hlayout>
+												<div hflex="1">
+													<space
+														spacing="42px" />
+													<label
+														value="Tiempo : " />
+													<space
+														spacing="2px" />
+													<combobox
+														hflex="1">
+													</combobox>
+												</div>
+												<div hflex="1">
+													<space
+														spacing="42px" />
+													<label
+														value="Tiempo : " />
+													<space
+														spacing="2px" />
+													<combobox
+														hflex="1">
+													</combobox>
+												</div>
+											</hlayout>
+											<hlayout>
+												<div hflex="1">
+													<space
+														spacing="46px" />
+													<label
+														value="Minuto : " />
+													<space
+														spacing="3px" />
+													<textbox
+														id="minutoE1" hflex="1" />
+												</div>
+												<div hflex="1">
+													<space
+														spacing="46px" />
+													<label
+														value="Minuto : " />
+													<space
+														spacing="3px" />
+													<textbox
+														id="minutoE2" hflex="1" />
+												</div>
+											</hlayout>
+											<space />
+											<hlayout>
+												<listbox id="a"
+													hflex="1" vflex="true">
+													<listhead>
+														<listheader
+															label="Jugador entra" />
+														<listheader
+															label="Jugador Sale" />
+														<listheader
+															label="OP " />
+													</listhead>
+													<template
+														name="model">
+														<listitem>
+															<listcell
+																label="@load(each.identificacion)" />
+															<listcell
+																label="@load(each.nombres)" />
+															<listcell>
+																<button
+																	label="confirm" hflex="1">
+																	<attribute name="onClick"><![CDATA[self.setDisabled(true);]]></attribute>
+																</button>
+															</listcell>
+														</listitem>
+													</template>
+												</listbox>
+												<listbox id="b"
+													hflex="1" vflex="true">
+													<listhead>
+														<listheader
+															label="Jugador entra" />
+														<listheader
+															label="Jugador Sale " />
+														<listheader
+															label="OP " />
+													</listhead>
+													<template
+														name="model">
+														<listitem>
+															<listcell
+																label="@load(each.identificacion)" />
+															<listcell
+																label="@load(each.nombres)" />
+															<listcell
+																label="@load(each.nombres)" />
+														</listitem>
+													</template>
+												</listbox>
+											</hlayout>
+										</tabpanel>
+										<!-- GOL JUGADOR -->
+										<tabpanel hflex="1"
+											vflex="true">
+											<hlayout>
+												<div hflex="1">
+													<space
+														spacing="33px" />
+													<label
+														value="Equipo 1 : " />
+													<space
+														spacing="1px" />
+													<combobox
+														hflex="1">
+													</combobox>
+												</div>
+												<div hflex="1">
+													<space
+														spacing="33px" />
+													<label
+														value="Equipo 2 : " />
+													<space
+														spacing="1px" />
+													<combobox
+														hflex="1">
+													</combobox>
+												</div>
+											</hlayout>
+											<hlayout>
+												<div hflex="1">
+													<label
+														value="Jugador Entra : " />
+													<space
+														spacing="1px" />
+													<combobox
+														hflex="1">
+													</combobox>
+												</div>
+												<div hflex="1">
+													<label
+														value="Jugador Entra : " />
+													<space
+														spacing="1px" />
+													<combobox
+														hflex="1">
+													</combobox>
+												</div>
+											</hlayout>
+											<hlayout>
+												<div hflex="1">
+													<space
+														spacing="1px" />
+													<label
+														value="Jugador Sale : " />
+													<space
+														spacing="1px" />
+													<combobox
+														hflex="1">
+													</combobox>
+												</div>
+												<div hflex="1">
+													<label
+														value="Jugador Sale : " />
+													<space
+														spacing="7px" />
+													<combobox
+														hflex="1">
+													</combobox>
+												</div>
+											</hlayout>
+											<hlayout>
+												<div hflex="1">
+													<space
+														spacing="42px" />
+													<label
+														value="Tiempo : " />
+													<space
+														spacing="2px" />
+													<combobox
+														hflex="1">
+													</combobox>
+												</div>
+												<div hflex="1">
+													<space
+														spacing="42px" />
+													<label
+														value="Tiempo : " />
+													<space
+														spacing="2px" />
+													<combobox
+														hflex="1">
+													</combobox>
+												</div>
+											</hlayout>
+											<hlayout>
+												<div hflex="1">
+													<space
+														spacing="46px" />
+													<label
+														value="Minuto : " />
+													<space
+														spacing="3px" />
+													<textbox
+														id="minutoEq1" hflex="1" />
+												</div>
+												<div hflex="1">
+													<space
+														spacing="46px" />
+													<label
+														value="Minuto : " />
+													<space
+														spacing="3px" />
+													<textbox
+														id="minutoEq2" hflex="1" />
+												</div>
+											</hlayout>
+											<space />
+											<hlayout>
+												<listbox id="c"
+													hflex="1" vflex="true">
+													<listhead>
+														<listheader
+															label="Jugador entra" />
+														<listheader
+															label="Jugador Sale" />
+														<listheader
+															label="OP " />
+													</listhead>
+													<template
+														name="model">
+														<listitem>
+															<listcell
+																label="@load(each.identificacion)" />
+															<listcell
+																label="@load(each.nombres)" />
+															<listcell
+																label="@load(each.nombres)" />
+														</listitem>
+													</template>
+												</listbox>
+												<listbox id="d"
+													hflex="1" vflex="true">
+													<listhead>
+														<listheader
+															label="Jugador entra" />
+														<listheader
+															label="Jugador Sale " />
+														<listheader
+															label="OP " />
+													</listhead>
+													<template
+														name="model">
+														<listitem>
+															<listcell
+																label="@load(each.identificacion)" />
+															<listcell
+																label="@load(each.nombres)" />
+															<listcell
+																label="@load(each.nombres)" />
+														</listitem>
+													</template>
+												</listbox>
+											</hlayout>
+										</tabpanel>
+										<!-- TARJETAS JUGADOR -->
+										<tabpanel hflex="1"
+											vflex="true">
+											<hlayout>
+												<div hflex="1">
+													<space
+														spacing="33px" />
+													<label
+														value="Equipo 1 : " />
+													<space
+														spacing="1px" />
+													<combobox
+														hflex="1">
+													</combobox>
+												</div>
+												<div hflex="1">
+													<space
+														spacing="33px" />
+													<label
+														value="Equipo 2 : " />
+													<space
+														spacing="1px" />
+													<combobox
+														hflex="1">
+													</combobox>
+												</div>
+											</hlayout>
+											<hlayout>
+												<div hflex="1">
+													<label
+														value="Jugador Entra : " />
+													<space
+														spacing="1px" />
+													<combobox
+														hflex="1">
+													</combobox>
+												</div>
+												<div hflex="1">
+													<label
+														value="Jugador Entra : " />
+													<space
+														spacing="1px" />
+													<combobox
+														hflex="1">
+													</combobox>
+												</div>
+											</hlayout>
+											<hlayout>
+												<div hflex="1">
+													<space
+														spacing="1px" />
+													<label
+														value="Jugador Sale : " />
+													<space
+														spacing="1px" />
+													<combobox
+														hflex="1">
+													</combobox>
+												</div>
+												<div hflex="1">
+													<label
+														value="Jugador Sale : " />
+													<space
+														spacing="7px" />
+													<combobox
+														hflex="1">
+													</combobox>
+												</div>
+											</hlayout>
+											<hlayout>
+												<div hflex="1">
+													<space
+														spacing="42px" />
+													<label
+														value="Tiempo : " />
+													<space
+														spacing="2px" />
+													<combobox
+														hflex="1">
+													</combobox>
+												</div>
+												<div hflex="1">
+													<space
+														spacing="42px" />
+													<label
+														value="Tiempo : " />
+													<space
+														spacing="2px" />
+													<combobox
+														hflex="1">
+													</combobox>
+												</div>
+											</hlayout>
+											<hlayout>
+												<div hflex="1">
+													<space
+														spacing="46px" />
+													<label
+														value="Minuto : " />
+													<space
+														spacing="3px" />
+													<textbox
+														id="minEquipo1" hflex="1" />
+												</div>
+												<div hflex="1">
+													<space
+														spacing="46px" />
+													<label
+														value="Minuto : " />
+													<space
+														spacing="3px" />
+													<textbox
+														id="minEquipo2" hflex="1" />
+												</div>
+											</hlayout>
+											<space />
+											<hlayout>
+												<listbox id="e"
+													hflex="1" vflex="true">
+													<listhead>
+														<listheader
+															label="Jugador entra" />
+														<listheader
+															label="Jugador Sale" />
+														<listheader
+															label="OP " />
+													</listhead>
+													<template
+														name="model">
+														<listitem>
+															<listcell
+																label="@load(each.identificacion)" />
+															<listcell
+																label="@load(each.nombres)" />
+															<listcell
+																label="@load(each.nombres)" />
+														</listitem>
+													</template>
+												</listbox>
+												<listbox id="f"
+													hflex="1" vflex="true">
+													<listhead>
+														<listheader
+															label="Jugador entra" />
+														<listheader
+															label="Jugador Sale " />
+														<listheader
+															label="OP " />
+													</listhead>
+													<template
+														name="model">
+														<listitem>
+															<listcell
+																label="@load(each.identificacion)" />
+															<listcell
+																label="@load(each.nombres)" />
+															<listcell
+																label="@load(each.nombres)" />
+														</listitem>
+													</template>
+												</listbox>
+											</hlayout>
+										</tabpanel>
+									</tabpanels>
+								</tabbox>
+							</vlayout>
+						</hlayout>
+					</groupbox>
+				</hlayout>
+				<!-- GROUP BOX 4 OBSERVACIONES -->
+				<hlayout spacing="15px">
+					<groupbox id="observacion" hflex="1"
+						style="background:#F5F8FB;" onOpen="cb3.setChecked(event.open);">
+						<caption>
+							<checkbox id="cb3" checked="true"
+								onCheck="observacion.setOpen(event.checked)" />
+							<label value="Observaciones"
+								sclass="font-weight-bold col-form-label" />
+						</caption>
+						<hlayout valign="middle">
+							<textbox id="obervacion" hflex="1"
+								height="80px" multiline="true" />
+						</hlayout>
+					</groupbox>
+				</hlayout>
+			</vlayout>
+		</groupbox>
+		<!-- Botones -->
+		<space/>
+		<hlayout>
+			<button id="grabar" label="Grabar" iconSclass="z-icon-save"
+				zclass="btn btn-outline-primary btn btn-sm"
+				onClick="@command('grabar')" />
+			<button id="salir" label="Salir"
+				iconSclass="z-icon-sign-out"
+				zclass="btn btn-outline-primary btn btn-sm"
+				onClick="@command('salir')" />
+		</hlayout>
+	</div>
+</zk>

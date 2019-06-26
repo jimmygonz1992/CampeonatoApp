@@ -1,0 +1,45 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./winPerfilEditar" ?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window id="winPerfilEditar" border="none" width="400px"
+		apply="ec.edu.upse.gcf.editar.PerfilEditar"
+		style="padding: 0 0 0 0;background:#0489B1" position="center">
+		<caption height="20px"
+			style="background:#0489B1"
+			sclass="p-1 mb text-white font-italic font-weight-bold"
+			label="Perfiles" />
+		<vlayout>
+			<grid>
+				<columns>
+					<column align="right" hflex="min" />
+					<column />
+				</columns>
+				<rows>
+					<row>
+						<label value="Nombre Perfil: " />
+						<textbox id="nombre" style="text-transform:uppercase"
+							value="@{winPerfilEditar$composer.perfil.nombre}" width="200px"
+							maxlength="100" />
+					</row>
+					<row>
+						<label value="Descripción: " />
+						<textbox id="descripcion" style="text-transform:uppercase"
+							value="@{winPerfilEditar$composer.perfil.descripcion}"
+							width="200px" height="100px" multiline="true"
+							maxlength="255" />
+
+					</row>
+				</rows>
+			</grid>
+
+			<!-- Los iconos listados con iconSclass son de: http://fontawesome.io/icons/ -->
+			<hlayout>
+				<button id="grabar" label="Grabar"
+					iconSclass="z-icon-save" zclass="btn btn-outline-primary btn btn-sm" />
+				<button id="salir" label="Salir"
+					iconSclass="z-icon-sign-out"  zclass="btn btn-outline-primary btn btn-sm" />
+			</hlayout>
+		</vlayout>
+	</window>
+</zk>

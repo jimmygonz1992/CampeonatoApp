@@ -1,0 +1,30 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<style>
+		.banner { background-color:#000040; color: white; padding: 0 0 0 0; }
+	</style>
+	<div sclass="banner" hflex="1" vflex="1">
+		<hbox align="center"  hflex="1" vflex="1">
+			<a>
+				<image src="/img/futbols.ico" width="60px" />
+			</a>
+			<div>
+				<label value="APLICACIÓN DE GESTIÓN DE CAMPEONATOS DE FÚTBOL" />
+			</div>
+			
+			<hbox hflex="1" vflex="1" pack="end" align="center">
+				<label value="@load(vm.nombreUsuario)" />
+				<h:form id="f" name="f"
+					action="j_spring_security_logout" method="POST" xmlns:h="native">
+					<html>
+						<input type="hidden"
+							name="${_csrf.parameterName}" value="${_csrf.token}" />
+					</html>
+					<button label="Salir" type="submit" sclass="btn btn-outline-success"/>
+				</h:form>
+			</hbox >
+		</hbox>
+	</div>
+</zk>

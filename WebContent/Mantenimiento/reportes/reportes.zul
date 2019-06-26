@@ -1,0 +1,197 @@
+<?page title="Listados de Reportes" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<div apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.reportes.reporteEquipos')"
+		hflex="1" vflex="1">
+		<groupbox vflex="1" hflex="1">
+			<vlayout spacing="15px" style="background:#F5F8FB;"
+				hflex="1" vflex="1">
+				<!-- LISTADO DE EQUIPOS -->
+				<hlayout spacing="15px">
+					<groupbox id="lstEquipos" hflex="1"
+						style="background:#F5F8FB;" onOpen="le.setChecked(event.open);">
+						<caption>
+							<checkbox id="le" checked="true"
+								onCheck="lstEquipos.setOpen(event.checked)" />
+							<label
+								value="LISTADO DE EQUIPOS AFILIADOS A LA LIGA"
+								sclass="font-weight-bold col-form-label" />
+						</caption>
+						<hlayout hflex="1">
+							<div>
+								<label
+									value="Listado de Equipos Afiliados "
+									sclass="font-weight-bold col-form-label" />
+							</div>
+							<space />
+							<div>
+								<button label="Descargar"
+									iconSclass="z-icon-download"
+									onClick="@command('verReporteListadoEquipos')"
+									zclass="btn btn-outline-danger btn btn-sm" />
+							</div>
+						</hlayout>
+					</groupbox>
+				</hlayout>
+				<!-- LISTADO DE INSCRIPCION DE EQUIPOS -->
+				<hlayout spacing="15px">
+					<groupbox id="insEquipos" hflex="1"
+						style="background:#F5F8FB;" onOpen="e.setChecked(event.open);">
+						<caption>
+							<checkbox id="e" checked="true"
+								onCheck="insEquipos.setOpen(event.checked)" />
+							<label
+								value="LISTADO DE INSCRIPCION DE EQUIPOS"
+								sclass="font-weight-bold col-form-label" />
+						</caption>
+						<hlayout hflex="1">
+							<div>
+								<label value="Seleccione Campeonato "
+									sclass="font-weight-bold col-form-label" />
+								<combobox model="@load(vm.campeonatos)"
+									placeholder="Seleccione campeonato"
+									selectedItem="@bind(vm.campeonatoSeleccionado)"
+									value="@load(vm.campeonato.nombreC)" width="320px">
+								</combobox>
+							</div>
+							<space />
+							<div>
+								<button label="Descargar"
+									iconSclass="z-icon-download"
+									disabled="@bind(empty vm.campeonatoSeleccionado)"									
+									onClick="@command('verReporteEquipos')"
+									zclass="btn btn-outline-danger btn btn-sm" />
+							</div>
+						</hlayout>
+					</groupbox>
+				</hlayout>
+				<!-- LISTADO DE INSCRIPCION DE JUGADORES -->
+				<hlayout spacing="15px">
+					<groupbox id="insJugadores" hflex="1"
+						style="background:#F5F8FB;" onOpen="j.setChecked(event.open);">
+						<caption>
+							<checkbox id="j" checked="true"
+								onCheck="insJugadores.setOpen(event.checked)" />
+							<label
+								value="LISTADO DE INSCRIPCION DE JUGADORES"
+								sclass="font-weight-bold col-form-label" />
+						</caption>
+						<hlayout hflex="1">
+							<div>
+								<label value="Seleccione Campeonato "
+									sclass="font-weight-bold col-form-label" />
+								<combobox model="@load(vm.campeonatos)"
+									placeholder="Seleccione campeonato"
+									selectedItem="@bind(vm.campSeleccionado)"
+									value="@load(vm.campeonato.nombreC)" width="320px">
+								</combobox>
+							</div>
+							<space />
+							<div>
+								<button label="Descargar"
+									iconSclass="z-icon-download"
+									disabled="@bind(empty vm.campSeleccionado)"
+									onClick="@command('verReporteJugadores')"
+									zclass="btn btn-outline-danger btn btn-sm" />
+							</div>
+						</hlayout>
+					</groupbox>
+				</hlayout>
+				<!-- Resultados de Partidos Jugados -->
+				<hlayout spacing="15px">
+					<groupbox id="resultadosPartidos" hflex="1"
+						style="background:#F5F8FB;" onOpen="r.setChecked(event.open);">
+						<caption>
+							<checkbox id="r" checked="true"
+								onCheck="resultadosPartidos.setOpen(event.checked)" />
+							<label
+								value="RESULTADOS DE PARTIDOS JUGADOS"
+								sclass="font-weight-bold col-form-label" />
+						</caption>
+						<hlayout hflex="1">
+							<div>
+								<label value="Seleccione Partido "
+									sclass="font-weight-bold col-form-label" />
+								<combobox model="@load(vm.campeonatos)"
+									placeholder="Seleccione campeonato"
+									selectedItem="@bind(vm.campSeleccionado)"
+									value="@load(vm.campeonato.nombreC)" width="320px">
+								</combobox>
+							</div>
+							<space />
+							<div>
+								<button label="Descargar"
+									iconSclass="z-icon-download"
+									disabled="@bind(empty vm.campSeleccionado)"
+									onClick="@command('verReporteJugadores')"
+									zclass="btn btn-outline-danger btn btn-sm" />
+							</div>
+						</hlayout>
+					</groupbox>
+				</hlayout>
+				<!-- Tabla de Posiciones -->
+				<hlayout spacing="15px">
+					<groupbox id="tablaPosiciones" hflex="1"
+						style="background:#F5F8FB;" onOpen="t.setChecked(event.open);">
+						<caption>
+							<checkbox id="t" checked="true"
+								onCheck="tablaPosiciones.setOpen(event.checked)" />
+							<label value="TABLA DE POSICIONES"
+								sclass="font-weight-bold col-form-label" />
+						</caption>
+						<hlayout hflex="1">
+							<div>
+								<label value="Seleccione Partido "
+									sclass="font-weight-bold col-form-label" />
+								<combobox model="@load(vm.campeonatos)"
+									placeholder="Seleccione campeonato"
+									selectedItem="@bind(vm.campSeleccionado)"
+									value="@load(vm.campeonato.nombreC)" width="320px">
+								</combobox>
+							</div>
+							<space />
+							<div>
+								<button label="Descargar"
+									iconSclass="z-icon-download"
+									disabled="@bind(empty vm.campSeleccionado)"
+									onClick="@command('verReporteJugadores')"
+									zclass="btn btn-outline-danger btn btn-sm" />
+							</div>
+						</hlayout>
+					</groupbox>
+				</hlayout>
+				<!-- Tabla de Goleadores -->
+				<hlayout spacing="15px">
+					<groupbox id="tablaGoleadores" hflex="1"
+						style="background:#F5F8FB;" onOpen="g.setChecked(event.open);">
+						<caption>
+							<checkbox id="g" checked="true"
+								onCheck="tablaGoleadores.setOpen(event.checked)" />
+							<label value="TABLA DE GOLEADORES"
+								sclass="font-weight-bold col-form-label" />
+						</caption>
+						<hlayout hflex="1">
+							<div>
+								<label value="Seleccione Partido "
+									sclass="font-weight-bold col-form-label" />
+								<combobox model="@load(vm.campeonatos)"
+									placeholder="Seleccione campeonato"
+									selectedItem="@bind(vm.campSeleccionado)"
+									value="@load(vm.campeonato.nombreC)" width="320px">
+								</combobox>
+							</div>
+							<space />
+							<div>
+								<button label="Descargar"
+									iconSclass="z-icon-download"
+									disabled="@bind(empty vm.campSeleccionado)"
+									onClick="@command('verReporteJugadores')"
+									zclass="btn btn-outline-danger btn btn-sm" />
+							</div>
+						</hlayout>
+					</groupbox>
+				</hlayout>
+			</vlayout>
+		</groupbox>
+	</div>
+</zk>

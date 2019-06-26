@@ -1,0 +1,39 @@
+<?page title="Permisos" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window id="winOpcionPerfilEditar" border="none" hflex="1" vflex="1"
+		style="padding: 0 0 0 0;background:#FFFFFF;"
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.editar.OpcionPerfilEditar')">
+		<vlayout hflex="1" vflex="1">
+			<grid>
+				<columns>
+					<column align="right" hflex="min" />
+					<column align="left" hflex="1" />
+				</columns>
+				<rows>
+					<row style="padding: 0 0 0 0;background:#EBFBFB;">
+						<label value="Perfil:" />
+						<combobox model="@load(vm.perfiles)"
+							style="text-transform:uppercase" placeholder="Seleccione perfil"
+							onSelect="@command('listaropciones')"
+							selectedItem="@bind(vm.perfilseleccionado)"
+							value="@load(vm.opcionperfil.perfil.nombre)" width="350px">
+						</combobox>
+					</row>
+				</rows>
+			</grid>
+			<hbox hflex="1" vflex="1" align="center">
+				<div vflex="1">
+					<tree selectedItems="@bind(vm.menus)" id="menu"
+						multiple="true" checkmark="true" hflex="1" vflex="1"
+					/>
+				</div>
+			</hbox>
+			<button label="Grabar" iconSclass="z-icon-save"
+				zclass="btn btn-outline-primary btn btn-sm"
+				onClick="@command('grabar')" />
+		</vlayout>
+	</window>
+</zk>

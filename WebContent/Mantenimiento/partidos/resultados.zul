@@ -1,0 +1,55 @@
+<?page title="Resultados Partidos" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window id="winResultadoEditar" border="none" hflex="1" vflex="1"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.editar.PartidoEditar')"
+		style="padding: 0 0 0 0;background:#122BC7;"
+		apply="org.zkoss.bind.BindComposer">
+		<vlayout vflex="1" hflex="1">
+			<groupbox>
+				<hlayout>
+					<div>
+						<label value="Para registrar nuevos resultados debe primero seleccionar el partido : *"
+							sclass="font-weight-bold col-form-label" />
+						<button label="Seleccionar partidos"
+							iconSclass="z-icon-search"
+							zclass="btn btn-outline-primary btn btn-sm"
+							onClick="@command('buscarPartido')" />
+					</div>
+				</hlayout>
+			</groupbox>
+			<hlayout vflex="1" hflex="1">
+				<listbox id="lstDetalleC"
+					autopaging="true" mold="paging"
+					hflex="1"
+					vflex="1">
+					<listhead>
+						<listheader label="IdC"
+							style="background:#122BC7;" width="60px" />
+						<listheader label="EquipoLocal"
+							style="background:#122BC7;" />
+						<listheader label="EquipoVisitante"
+							style="background:#122BC7;" />
+						<listheader label="Fecha"
+							style="background:#122BC7;" width="100px" />
+						<listheader label="Hora"
+							style="background:#122BC7;" width="80px" />
+					</listhead>
+					<template name="model">
+						<listitem>
+							<listcell
+								/>
+							<listcell  />
+							<listcell  />
+							<listcell
+								 />
+							<listcell
+								 />
+						</listitem>
+					</template>
+				</listbox>
+			</hlayout>
+		</vlayout>
+	</window>
+</zk>

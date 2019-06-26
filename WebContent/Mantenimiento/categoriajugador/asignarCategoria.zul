@@ -1,0 +1,91 @@
+<?page title="Categoría - Jugador" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window id="winCategoriaJugadorEditar" border="none" width="750px"
+		height="500px" style="padding: 0 0 0 0;background:#122BC7;"
+		position="center" apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.editar.CategoriaJugadorEditar')">
+		<caption label="Asigne una Categoría a un Jugador" height="20px"
+			sclass="p-1 mb text-white font-italic font-weight-bold" />
+		<vlayout hflex="1" vflex="1">
+			<groupbox>
+				<hlayout>
+					<div>
+						<label value="Categoría : *"
+							sclass="font-weight-bold col-form-label" />
+						<combobox model="@load(vm.categorias)"
+							placeholder="Seleccione categoría"
+							onSelect="@command('listarjugadores')"
+							selectedItem="@bind(vm.categoriaseleccionada)"
+							value="@load(vm.categoriajugador.categoria.nombre)"
+							width="230px" />
+					</div>
+					<space />
+					<div>
+						<label value="Tipo Categoría : *"
+							sclass="font-weight-bold col-form-label" />
+						<label
+							value="@bind(vm.categoriaseleccionada.tipo)"
+							sclass="col-form-label" />
+					</div>
+					<space />
+					<div>
+						<button label="Grabar" iconSclass="z-icon-save"
+							zclass="btn btn-outline-primary btn btn-sm"
+							onClick="@command('grabar')" />
+						<button id="salir" label="Salir"
+							iconSclass="z-icon-sign-out"
+							zclass="btn btn-outline-danger btn btn-sm"
+							onClick="@command('salir')" />
+					</div>
+				</hlayout>
+			</groupbox>
+			<hbox hflex="1" vflex="1" align="center">
+				<listbox model="@load(vm.jugadoresDisponibles)"
+					autopaging="true" mold="paging"
+					selectedItem="@bind(vm.jugadorseleccionado)" hflex="1" vflex="1">
+					<listhead>
+						<listheader label="Jugadores Disponible"
+							sclass="font-weight-bold col-form-label"
+							style="background:#122BC7;" />
+					</listhead>
+					<template name="model">
+						<listitem>
+							<listcell label="@load(each.nombres)" />
+						</listitem>
+					</template>
+				</listbox>
+				<vbox>
+					<button iconSclass="z-icon-angle-right"
+						disabled="@bind(empty vm.jugadorseleccionado)"
+						sclass="btn btn-outline-success" onClick="@command('agregar')" />
+					<button iconSclass="z-icon-angle-double-right"
+						disabled="@bind(empty vm.jugadoresDisponibles)"
+						sclass="btn btn-outline-success"
+						onClick="@command('agregartodo')" />
+					<button iconSclass="z-icon-angle-left"
+						disabled="@bind(empty vm.quitarjugador)"
+						sclass="btn btn-outline-success" onClick="@command('quitar')" />
+					<button iconSclass="z-icon-angle-double-left"
+						disabled="@bind(empty vm.jugadoresAsignados)"
+						sclass="btn btn-outline-success" onClick="@command('quitartodo')" />
+				</vbox>
+				<listbox model="@load(vm.jugadoresAsignados)"
+					autopaging="true" mold="paging"
+					selectedItem="@bind(vm.quitarjugador)" hflex="1" vflex="1">
+					<listhead>
+						<listheader label="Jugadores Asignados"
+							sclass="font-weight-bold col-form-label"
+							style="background:#122BC7;" />
+					</listhead>
+					<template name="model">
+						<listitem>
+							<listcell label="@load(each.nombres)" />
+						</listitem>
+					</template>
+				</listbox>
+			</hbox>
+		</vlayout>
+	</window>
+</zk>

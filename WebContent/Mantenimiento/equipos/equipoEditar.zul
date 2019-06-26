@@ -1,0 +1,63 @@
+<?page title="Equipos" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window id="winEquipoEditar" border="none" width="580px"
+		style="padding: 0 0 0 0;background:#122BC7;" position="center"
+		mode="embedded" apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.editar.EquipoEditar')">
+		<caption label="Ingrese datos" height="20px"
+			sclass="p-1 text-white font-italic font-weight-bold" />
+		<vlayout>
+			<grid hflex="1" sclass="form-group-row">
+				<columns>
+					<column hflex="min" align="right" />
+					<column hflex="1" align="left" />
+				</columns>
+				<rows>
+					<row>
+						<label value="Foto: "
+							sclass="font-weight-bold col-form-label" />
+						<div align="left">
+							<image width="125px"
+								content="@load(vm.imagenEscudo)"
+								style="border:1px #cccccc solid; " />
+							<separator spacing="3px" />
+							<div align="left">
+								<button id="btnUpload" label="Cargar..."
+									upload="true" width="125px"
+									onUpload="@command('subir', upEvent=event)"
+									iconSclass="z-icon-upload"
+									zclass="btn btn-outline-primary btn btn-sm" />
+							</div>
+						</div>
+					</row>					
+					<row>
+						<label value="Nombre Equipo : *"
+							sclass="font-weight-bold col-form-label" />
+						<textbox id= "nombreEquipo"
+							value="@bind(vm.equipo.nombre)" hflex="1"
+							maxlength="255" />
+					</row>
+					<row>
+						<label value="Representante : *"
+							sclass="font-weight-bold col-form-label" />
+						<textbox id="representanteEquipo"
+							value="@bind(vm.equipo.representante)" hflex="1"
+							maxlength="255" />
+					</row>
+				</rows>
+			</grid>
+			<div>
+				<button id="grabar" label="Grabar"
+					iconSclass="z-icon-save"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('grabar')" />
+				<button id="salir" label="Salir"
+					iconSclass="z-icon-sign-out"
+					zclass="btn btn-outline-danger btn btn-sm"
+					onClick="@command('salir')" />
+			</div>
+		</vlayout>
+	</window>
+</zk>

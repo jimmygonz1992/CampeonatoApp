@@ -1,0 +1,44 @@
+<?page title="Cambio de contraseña" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window id="winUsuarioEditar" width="420px" vflex="1"
+		style="padding: 0 0 0 0;background:#122BC7;" mode="overlapped"
+		apply="org.zkoss.bind.BindComposer" border="none" position="center"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.editar.CambioDatos')">
+		<caption label="Cambio de Contraseña" height="20px"
+			sclass="p-1 mb text-white font-italic font-weight-bold" />
+		<vlayout>
+			<grid>
+				<columns>
+					<column align="right" hflex="min" />
+					<column align="left" hflex="1" />
+				</columns>
+				<rows>
+					<row>
+						<label value="Clave nueva :"
+							sclass="font-weight-bold" />
+						<textbox id="claveNueva" type="password"
+							value="@load(vm.usuario.clave)" hflex="1"/>
+					</row>
+					<row>
+						<label value="Confirmar clave : "
+							sclass="font-weight-bold" />
+						<textbox id="confirmaClave" type="password"
+							value="@load(vm.usuario.clave)" 
+							onOK="@command('isValidarV')" hflex="1"/>
+					</row>
+				</rows>
+			</grid>
+		</vlayout>
+		<hlayout>
+			<button id="btnGraba" label="Grabar" iconSclass="z-icon-save"				
+				zclass="btn btn-outline-primary btn btn-sm"
+				onClick="@command('graba')" />
+			<button id="cancelar" label="Salir"
+				iconSclass="z-icon-sign-out"
+				zclass="btn btn-outline-danger btn btn-sm"
+				onClick="@command('sale')" />
+		</hlayout>		
+	</window>
+</zk>

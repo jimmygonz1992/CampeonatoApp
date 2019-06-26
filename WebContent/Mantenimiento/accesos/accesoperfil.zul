@@ -1,0 +1,74 @@
+<?page title="Permisos" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window id="winOpcionPerfilEditar" border="none" hflex="1" vflex="1"
+		style="padding: 0 0 0 0;background:#FFFFFF;"
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.editar.Permiso')">
+		<vlayout hflex="1" vflex="1">
+			<groupbox>
+				<hlayout>
+					<div>
+						<label value="Perfil:" />
+						<combobox model="@load(vm.perfiles)"
+							placeholder="Seleccione perfil"
+							onSelect="@command('listaropciones')"
+							selectedItem="@bind(vm.perfilseleccionado)"
+							value="@load(vm.opcionperfil.perfil.nombre)" width="300px">
+						</combobox>
+					</div>					
+					<space />
+					<div>
+						<button label="Grabar" iconSclass="z-icon-save"
+							zclass="btn btn-outline-danger btn btn-sm"
+							onClick="@command('grabar')" />
+					</div>
+				</hlayout>
+			</groupbox>
+			<hbox hflex="1" vflex="1" align="center">
+				<listbox model="@load(vm.opcionesDisponible)"
+					autopaging="true" mold="paging"
+					selectedItem="@bind(vm.opcionseleccionado)" hflex="1" vflex="1">
+					<listhead>
+						<listheader label="Opciones Disponible"
+							style="background:#122BC7;" />
+					</listhead>
+					<template name="model">
+						<listitem>
+							<listcell label="@load(each.titulo)" />
+						</listitem>
+					</template>
+				</listbox>
+				<vbox>
+					<button iconSclass="z-icon-angle-right"
+						disabled="@bind(empty vm.opcionseleccionado)"
+						sclass="btn btn-outline-success" onClick="@command('agregar')" />
+					<button iconSclass="z-icon-angle-double-right"
+						disabled="@bind(empty vm.opcionesDisponible)"
+						sclass="btn btn-outline-success"
+						onClick="@command('agregartodo')" />
+					<button iconSclass="z-icon-angle-left"
+						disabled="@bind(empty vm.quitaropcion)"
+						sclass="btn btn-outline-success" onClick="@command('quitar')" />
+					<button iconSclass="z-icon-angle-double-left"
+						disabled="@bind(empty vm.opcionesAsignadas)"
+						sclass="btn btn-outline-success" onClick="@command('quitartodo')" />
+				</vbox>
+				<listbox model="@load(vm.opcionesAsignadas)"
+					autopaging="true" mold="paging"
+					selectedItem="@bind(vm.quitaropcion)" hflex="1" vflex="1">
+					<listhead>
+						<listheader label="Opción Asignada"
+							style="background:#122BC7;" />
+					</listhead>
+					<template name="model">
+						<listitem>
+							<listcell label="@load(each.titulo)" />
+						</listitem>
+					</template>
+				</listbox>
+			</hbox>
+		</vlayout>
+	</window>
+</zk>
