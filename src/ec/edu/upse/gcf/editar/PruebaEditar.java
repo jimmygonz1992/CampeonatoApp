@@ -29,6 +29,7 @@ import ec.edu.upse.gcf.modelo.Equipojugador;
 import ec.edu.upse.gcf.modelo.Jugador;
 import ec.edu.upse.gcf.modelo.Partido;
 
+@SuppressWarnings({ "serial", "rawtypes" })
 public class PruebaEditar extends SelectorComposer {
 	@Wire private Window winInscripcionequipoEditar;
 	@Wire Listbox lstJugadoresEuno;
@@ -141,7 +142,7 @@ public class PruebaEditar extends SelectorComposer {
 	}	
 	
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings({ "unchecked" })
 	//@Command
 	@Listen("onClick=#grabar")
 	public void grabar() {
